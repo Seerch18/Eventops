@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/body.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { MenuComponent } from './menu/menu.component';
     FooterComponent,
     BodyComponent,
     MenuComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
