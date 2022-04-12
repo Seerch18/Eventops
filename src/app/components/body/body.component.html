@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 ">
+        <div class="col-9">
             <div class="w-auto d-flex justify-content-center">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7489.251388546485!2d-4.775897875939212!3d37.88737000063333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1649172049716!5m2!1ses!2ses"
@@ -8,27 +8,70 @@
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-        <div class="col-2 border m-0 p-0">
-            <ul class="nav flex-column border">
-                <li class="nav-item">
-                    <a class="nav-link border border-bottom text-black" aria-current="page" href="#">Filtros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">filtro1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">filtro2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">filtro3</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">filtro4</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">filtro5</a>
-                </li>
-            </ul>
+        <div class="col-3 m-0 p-0">
+            <form action="" method="">
+                <ul class="nav flex-column">
+                    <li class="nav-item text-center mb-2">
+                        <h3 class="p-2 m-2 border-bottom">Búsqueda / Filtros</h3>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseCity" aria-expanded="false"
+                            aria-controls="collapseCity">Ciudad</button>
+                        <div class="collapse mt-2" id="collapseCity">
+                            <div class="card card-body">
+                                <span>Ciudades</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseZone" aria-expanded="false"
+                            aria-controls="collapseZone">Zona</button>
+                        <div class="collapse mt-2" id="collapseZone">
+                            <div class="card card-body">
+                                <span>Zonas de la ciudad</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseCateg" aria-expanded="false"
+                            aria-controls="collapseCateg">Categorías</button>
+                        <div class="collapse mt-2" id="collapseCateg">
+                            <div class="card card-body">
+                                <span>Categorías</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseDate" aria-expanded="false"
+                            aria-controls="collapseDate">Fecha</button>
+                        <div class="collapse mt-2" id="collapseDate">
+                            <div class="card card-body">
+                                <span>Fechas</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTime" aria-expanded="false"
+                            aria-controls="collapseTime">Hora</button>
+                        <div class="collapse mt-2" id="collapseTime">
+                            <div class="card card-body">
+                                <span>Horas</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline-success w-100 rounded-pill text-center" type="submit">
+                            Buscar <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                </ul>
+            </form>
+
         </div>
     </div>
 </div>
