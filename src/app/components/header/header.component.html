@@ -1,3 +1,5 @@
+<!-- 1º Menu -->
+
 <nav class="navbar navbar-expand navbar-light bg-white d-flex justify-content-between">
     <ul class="navbar-nav flex-row ms-2">
         <li class="nav-item">
@@ -14,25 +16,41 @@
         <img src="../../../assets/IMG/logo.png" alt="" width="150" height="100">
     </a>
     <ul class="navbar-nav flex-row me-2">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) == false">
+            <a class="nav-link">
+                <app-loginbutton></app-loginbutton>
+            </a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) == false">
             <a class="nav-link" routerLink="/login" aria-current="page" href="login">
                 <button class="btn btn-primary bglogin" type="submit" routerLinkActive="bg-warning">
                     Login
                 </button>
             </a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) == false">
             <a class="nav-link" routerLink="/register" href="register">
                 <button class="btn btn-primary" type="submit" routerLinkActive="bg-warning">
                     Registro
                 </button>
             </a>
+        </li> -->
+
+        <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
+            <a class="nav-link">
+                <app-logoutbutton></app-logoutbutton>
+            </a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" href="#"><button class="btn btn-primary" type="submit">+Info</button></a>
+            <a class="nav-link" href="/"><button class="btn btn-primary" type="submit"><i
+                        class="fa-solid fa-house"></i></button></a>
         </li>
     </ul>
 </nav>
+
+<!-- 2º Menu -->
+
 <nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
         <h6 class="m-0 p-0 me-2">Búsqueda rápida</h6>
