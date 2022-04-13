@@ -4,12 +4,17 @@ import { BodyComponent } from './components/body/body.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { ExternalapiComponent } from './components/externalapi/externalapi.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'externalapi',
+    component: ExternalapiComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: BodyComponent },
 ];
 

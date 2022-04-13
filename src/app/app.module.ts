@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginbuttonComponent } from './components/loginbutton/loginbutton.component';
 import { LogoutbuttonComponent } from './components/logoutbutton/logoutbutton.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ExternalapiComponent } from './components/externalapi/externalapi.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginbuttonComponent,
     LogoutbuttonComponent,
     ProfileComponent,
+    ExternalapiComponent,
   ],
   imports: [
     BrowserModule,
