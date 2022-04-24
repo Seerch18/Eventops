@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ele of listEvents;" title="{{ele.descripcion}}">
+            <th scope="row">{{ele.nombre}}</th>
+            <td>{{ele.fechaInicio}}</td>
+            <td>{{ele.precio}}€</td>
+        </tr>
+    </tbody>
+</table>

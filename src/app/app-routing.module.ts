@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BodyComponent } from './components/body/body.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { ExternalapiComponent } from './components/externalapi/externalapi.component';
+import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent },
@@ -15,6 +14,7 @@ const routes: Routes = [
     component: ExternalapiComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'listEvents' , component: MisEventosComponent},
   { path: '**', component: BodyComponent },
 ];
 
