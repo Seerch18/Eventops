@@ -5,6 +5,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { ExternalapiComponent } from './components/externalapi/externalapi.component';
 import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
+import { CrearEventoComponent } from './components/events/crear-evento/crear-evento.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent },
@@ -14,7 +15,16 @@ const routes: Routes = [
     component: ExternalapiComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'listEvents' , component: MisEventosComponent},
+  {
+    path: 'saveEvent',
+    component: CrearEventoComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'listEvents',
+    component: MisEventosComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: BodyComponent },
 ];
 

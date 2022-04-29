@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <form [formGroup]="frmEvento" (submit)="crearEvento()">
+                        <!-- Nombre input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="name" class="form-control" formControlName="name" />
+                            <label class="form-label" for="name">Nombre del Evento</label>
+                        </div>
+
+                        <!-- Descripción input -->
+                        <div class="form-outline mb-4">
+                            <textarea class="form-control" id="description" rows="4"
+                                formControlName="description"></textarea>
+                            <label class="form-label" for="description">Descripción del Evento</label>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <!-- Fecha Inicio input -->
+                                <div class="form-outline">
+                                    <input type="date" id="dateStart" class="form-control"
+                                        formControlName="dateStart" />
+                                    <label class="form-label" for="dateStart">Fecha Inicio</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Fecha Fin input -->
+                                <div class="form-outline">
+                                    <input type="date" id="dateEnd" class="form-control" formControlName="dateEnd" />
+                                    <label class="form-label" for="dateEnd">Fecha Fin</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <!-- Hora Inicio input -->
+                                <div class="form-outline">
+                                    <input type="time" id="form4Example1" class="form-control" />
+                                    <label class="form-label" for="form4Example1">Hora Inicio</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Hora Fin input -->
+                                <div class="form-outline">
+                                    <input type="time" id="form4Example1" class="form-control" />
+                                    <label class="form-label" for="form4Example1">Hora Fin</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Ubicación input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="ubi" class="form-control" formControlName="ubi" />
+                            <label class="form-label" for="ubi">Ubicación</label>
+                        </div>
+
+                        <!-- Precio input -->
+                        <div class="form-outline mb-4">
+                            <input type="number" id="price" class="form-control" formControlName="price" />
+                            <label class="form-label" for="price">Precio</label>
+                        </div>
+
+                        <!-- Precio input -->
+                        <div class="form-outline mb-4">
+                            <input type="number" id="participants" class="form-control"
+                                formControlName="participants" />
+                            <label class="form-label" for="participants">Participantes</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" [disabled]="frmEvento.invalid" class="btn btn-primary mb-4">Crear
+                            Evento</button>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <!-- <div class="w-auto d-flex justify-content-center">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7489.251388546485!2d-4.775897875939212!3d37.88737000063333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1649172049716!5m2!1ses!2ses"
+                            width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div> -->
+                    <app-googlemaps [currentPosition]="currentPosition"></app-googlemaps>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

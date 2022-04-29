@@ -8,5 +8,10 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+if (!navigator.geolocation) {
+  throw new Error('Navegador no soporta la Geolocation');
+}
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));

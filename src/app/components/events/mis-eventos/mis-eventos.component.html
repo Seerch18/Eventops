@@ -14,3 +14,16 @@
         </tr>
     </tbody>
 </table>
+
+<div class="d-flex flex-row bd-highlight mb-3">
+    <div class="card m-2" style="width: 18rem;" *ngFor="let ele of listEvents;">
+        <div class="card-body">
+            <h5 class="card-title">{{ele.nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Inicio: {{ele.fechaInicio}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">FIn: {{ele.fechaFin}}</h6>
+            <p class="card-text">{{ele.descripcion}}</p>
+            <a routerLink="#" class="card-link">Editar</a>
+            <a routerLink="#" class="card-link">Borrar</a>
+        </div>
+    </div>
+</div>
