@@ -4,6 +4,8 @@ import {
   Inject,
   Input,
   OnInit,
+  Output,
+  EventEmitter,
   Renderer2,
   ViewChild,
 } from '@angular/core';
@@ -18,23 +20,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./googlemaps.component.css'],
 })
 export class GooglemapsComponent implements OnInit {
+  @Input() numEventosRecientes:any;
+  @Input() currentPosition: any; // posición actual
+  @Output() newPositionEvent = new EventEmitter<any>(); // enviar la nueva posición al contenedor padre
   // posición en el mapa
-
-  @Input() currentPosition: any;
-
   @Input() position = {
     lat: 37.88785365229443,
     lng: -4.779458242357073,
   };
 
+  pruebaPosition = {
+    lat: 37.881693635982174,
+    lng: -4.790672517875474,
+  };
+
   // información del InfoWindow
   label = {
     titulo: 'Ubicación',
-    subtitulo: 'Mi ubicación de envío',
+    subtitulo: '',
   };
 
   map: any;
   marker: any;
+  pruebaMarker: any;
   infowindow: any;
   positionSet: any;
 
@@ -50,19 +58,11 @@ export class GooglemapsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.currentPosition != null && this.currentPosition != '') {
-      if (
-        this.currentPosition.lat != null &&
-        this.currentPosition.lat != '' &&
-        this.currentPosition.lng != null &&
-        this.currentPosition.lng != ''
-      ) {
-        console.log('entra');
-        this.position = this.currentPosition;
-      }
+    if (this._router.url.includes('/saveEvent')) {
+      this.addCurrentPosition();
     }
-
     this.init();
+    // console.log(this.numEventosRecientes);
   }
 
   async init() {
@@ -77,13 +77,14 @@ export class GooglemapsComponent implements OnInit {
   }
 
   initMap() {
+    // coge una localización mockeada
     const position = this.position;
 
     let latLng = new google.maps.LatLng(position.lat, position.lng);
 
     let mapOptions = {
       center: latLng,
-      zoom: 18,
+      zoom: 15,
       disableDefaultUI: true,
       clickableIcons: false,
     };
@@ -94,13 +95,24 @@ export class GooglemapsComponent implements OnInit {
       animation: google.maps.Animation.DROP,
       draggable: false,
     });
+
+    // crear marcadores según el númer de eventos recibidos
+    this.pruebaMarker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      draggable: false,
+    });
+
     this.infowindow = new google.maps.InfoWindow();
-    this.clickHandleEvent();
+
+    this.clickHandleEvent(); // añade un evento click al mapa
+
     if (this.label.titulo.length) {
-      this.addMarker(position);
-      this.setInfoWindow(this.marker, this.label.titulo, this.label.subtitulo);
+      // esta condición no es necesaria
+      this.addMarker(position); // establece el marcador en el mapa
+      this.setInfoWindow(this.marker, this.label.titulo, this.label.subtitulo); // crea una venta en lo alto del marcador
     }
-    this.currentLocation();
+    this.currentLocation(); // marca en el mapa la ubicación en la que se encuentra el usuario (va mal)
   }
 
   clickHandleEvent() {
@@ -109,7 +121,8 @@ export class GooglemapsComponent implements OnInit {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       };
-      console.log(position);
+      // añade la nueva posición al input de ubicación
+      this.addNewPosition(position);
       if (this.label.titulo.length) {
         this.addMarker(position);
         this.setInfoWindow(
@@ -123,7 +136,6 @@ export class GooglemapsComponent implements OnInit {
 
   addMarker(position: any): void {
     let latLng = new google.maps.LatLng(position.lat, position.lng);
-
     this.marker.setPosition(latLng);
     this.map.panTo(position);
     this.positionSet = position;
@@ -158,6 +170,7 @@ export class GooglemapsComponent implements OnInit {
     this.infowindow.open(this.map, marker);
   }
 
+  // -----------------------------------------------------------------------
   currentLocation() {
     const locationButton = this.document.createElement('button');
     locationButton.textContent = 'Current Location';
@@ -211,9 +224,14 @@ export class GooglemapsComponent implements OnInit {
     );
     infoWindow.open(this.map);
   }
+  // -----------------------------------------------------------------------
 
-  crearEvento() {
-    alert('crear evento');
-    this._router.navigate(['/saveEvent'], { state: this.position });
+  addNewPosition(value: any) {
+    this.newPositionEvent.emit(value);
+  }
+
+  addCurrentPosition() {
+    if (this.currentPosition != null && this.currentPosition != '')
+      this.position = this.currentPosition;
   }
 }

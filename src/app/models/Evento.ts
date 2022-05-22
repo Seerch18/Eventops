@@ -1,11 +1,11 @@
-export interface Event {
+export interface Evento {
   id: number;
+  usuario_id: number;
+  ciudad_id: number;
   nombre: string;
   descripcion: string;
   ubicacion: string;
-  asistentes: number;
   fechaInicio: string;
   fechaFin: string;
   precio: number;
-  ciudad: string;
 }

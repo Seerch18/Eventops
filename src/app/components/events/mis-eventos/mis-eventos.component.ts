@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../services/events/evento.service';
-import { Event } from '../../../models/event';
+import { Evento } from '../../../models/Evento';
+import { AuthService } from 'src/app/auth/service/auth.service';
 
 @Component({
   selector: 'app-mis-eventos',
@@ -8,9 +9,9 @@ import { Event } from '../../../models/event';
   styleUrls: ['./mis-eventos.component.css'],
 })
 export class MisEventosComponent implements OnInit {
-  listEvents: Array<Event>;
+  listEvents: Array<Evento>;
 
-  constructor(private eventoService: EventoService) {
+  constructor(private eventoService: EventoService, public usuario:AuthService) {
     this.listEvents = [];
   }
 
@@ -22,5 +23,14 @@ export class MisEventosComponent implements OnInit {
     this.eventoService
       .listEvents()
       .subscribe((eventos) => (this.listEvents = eventos));
+  }
+
+  eliminarEvento(id: any) {
+    this.eventoService.deleteEvent(id).subscribe((resp) => {
+      if (!resp['delete']) {
+        alert('Error al eliminar el registro');
+      }
+      this.cargarEventos();
+    });
   }
 }

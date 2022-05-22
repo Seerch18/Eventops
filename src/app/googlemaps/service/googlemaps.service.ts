@@ -45,6 +45,8 @@ export class GooglemapsService {
         script.src = 'https://maps.googleapis.com/maps/api/js?callback=mapInit';
       }
 
+      script.src = script.src + "&libraries=places"
+
       renderer.appendChild(document.body, script);
     });
   }

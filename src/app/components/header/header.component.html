@@ -21,31 +21,46 @@
                 <app-loginbutton></app-loginbutton>
             </a>
         </li>
-        <!-- <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) == false">
-            <a class="nav-link" routerLink="/login" aria-current="page" href="login">
-                <button class="btn btn-primary bglogin" type="submit" routerLinkActive="bg-warning">
-                    Login
-                </button>
-            </a>
-        </li> -->
-        <!-- <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) == false">
-            <a class="nav-link" routerLink="/register" href="register">
-                <button class="btn btn-primary" type="submit" routerLinkActive="bg-warning">
-                    Registro
-                </button>
-            </a>
-        </li> -->
 
         <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
-            <a class="nav-link">
-                <app-logoutbutton></app-logoutbutton>
-            </a>
+            <div class="dropdown">
+                <a href="#" *ngIf="auth.user$ | async as user"
+                    class="d-flex align-items-center link-dark text-decoration-none nav-link" id="dropdownUser2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{user.picture}}" alt="" width="45" height="45" class="rounded-circle me-2">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end ext-small shadow" aria-labelledby="dropdownUser2">
+                    <li class="nav-item">
+                        <a routerLink="saveEvent" class="nav-link link-dark">
+                            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-plus"></i></span>
+                            Crear Evento
+                        </a>
+                    </li>
+                    <li><a class="dropdown-item" routerLink="#">
+                            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-gear"></i></span>
+                            Settings
+                        </a>
+                    </li>
+                    <li><a class="dropdown-item" routerLink="profile">
+                            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-user"></i></span>
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <app-logoutbutton class="dropdown-item"></app-logoutbutton>
+                    </li>
+                </ul>
+            </div>
         </li>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/"><button class="btn btn-primary" type="submit"><i
                         class="fa-solid fa-house"></i></button></a>
-        </li>
+        </li> -->
+
     </ul>
 </nav>
 

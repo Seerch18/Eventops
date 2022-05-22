@@ -1,0 +1,102 @@
+<form action="" method="">
+    <ul class="nav flex-column">
+        <li class="nav-item text-center mb-2">
+            <h3 class="p-2 m-2 border-bottom">Búsqueda / Filtros</h3>
+        </li>
+        <li class="nav-item mb-2">
+            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseCity" aria-expanded="false"
+                aria-controls="collapseCity">Ciudad</button>
+            <div class="collapse mt-2" id="collapseCity">
+                <div class="card card-body">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Ciudad</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+        </li>
+        <!-- <li class="nav-item mb-2">
+            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseZone" aria-expanded="false"
+                aria-controls="collapseZone">Zona</button>
+            <div class="collapse mt-2" id="collapseZone">
+                <div class="card card-body">
+                    <span>Zonas de la ciudad</span>
+                </div>
+            </div>
+        </li> -->
+        <li class="nav-item mb-2">
+            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseCateg" aria-expanded="false"
+                aria-controls="collapseCateg">Categorías</button>
+            <div class="collapse mt-2" id="collapseCateg">
+                <div class="card card-body">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Categorías</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item mb-2">
+            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseDate" aria-expanded="false"
+                aria-controls="collapseDate">Fecha</button>
+            <div class="collapse mt-2" id="collapseDate">
+                <div class="card card-body">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <!-- Fecha Inicio input -->
+                            <div class="form-outline">
+                                <input type="date" id="dateStart" class="form-control" />
+                                <label class="form-label" for="dateStart">Fecha Inicio</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <!-- Fecha Fin input -->
+                            <div class="form-outline">
+                                <input type="date" id="dateEnd" class="form-control" />
+                                <label class="form-label" for="dateEnd">Fecha Fin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item mb-2">
+            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseTime" aria-expanded="false"
+                aria-controls="collapseTime">Hora</button>
+            <div class="collapse mt-2" id="collapseTime">
+                <div class="card card-body">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <!-- Hora Inicio input -->
+                            <div class="form-outline">
+                                <input type="time" id="timeStart" class="form-control" />
+                                <label class="form-label" for="timeStart">Hora Inicio</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <!-- Hora Fin input -->
+                            <div class="form-outline">
+                                <input type="time" id="timeEnd" class="form-control" />
+                                <label class="form-label" for="timeEnd">Hora Fin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <button class="btn btn-outline-success w-100 rounded-pill text-center" type="submit">
+                Buscar <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </li>
+    </ul>
+</form>

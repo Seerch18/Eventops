@@ -15,7 +15,8 @@ export class LogoutbuttonComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  logout(): void {
+  async logout(): Promise<void> {
     this.auth.logout({ returnTo: this.doc.location.origin });
+    localStorage.removeItem('user');
   }
 }

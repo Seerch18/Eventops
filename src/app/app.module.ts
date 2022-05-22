@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { GooglemapsModule } from './googlemaps/googlemaps.module';
+import { MaterialModule } from './components/material/material.module';
 
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
@@ -21,11 +22,14 @@ import { MenuComponent } from './components/menus/menu/menu.component';
 import { LoginbuttonComponent } from './components/loginbutton/loginbutton.component';
 import { LogoutbuttonComponent } from './components/logoutbutton/logoutbutton.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ExternalapiComponent } from './components/externalapi/externalapi.component';
 import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
 import { MenuBusquedaRapidaComponent } from './components/menus/menu-busqueda-rapida/menu-busqueda-rapida.component';
 import { CrearEventoComponent } from './components/events/crear-evento/crear-evento.component';
-import { MapComponent } from './components/maps/map/map.component';
+import { FechaPipe } from './pipes/fecha.pipe';
+import { MenuBusquedaComponent } from './components/menus/menu-busqueda/menu-busqueda.component';
+import { ProximosEventosComponent } from './components/events/proximos-eventos/proximos-eventos.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LikeEventosComponent } from './components/events/like-eventos/like-eventos.component';
 
 @NgModule({
   declarations: [
@@ -37,11 +41,13 @@ import { MapComponent } from './components/maps/map/map.component';
     LoginbuttonComponent,
     LogoutbuttonComponent,
     ProfileComponent,
-    ExternalapiComponent,
     MisEventosComponent,
     MenuBusquedaRapidaComponent,
     CrearEventoComponent,
-    MapComponent,
+    FechaPipe,
+    MenuBusquedaComponent,
+    ProximosEventosComponent,
+    LikeEventosComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +87,9 @@ import { MapComponent } from './components/maps/map/map.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDzjKgXo682mL_NZCN0wqb4qhrQlSMrkNg',
     }),
-    GooglemapsModule
+    GooglemapsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
