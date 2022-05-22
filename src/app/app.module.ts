@@ -30,6 +30,7 @@ import { MenuBusquedaComponent } from './components/menus/menu-busqueda/menu-bus
 import { ProximosEventosComponent } from './components/events/proximos-eventos/proximos-eventos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LikeEventosComponent } from './components/events/like-eventos/like-eventos.component';
+import { ListarEventosTablaComponent } from './components/events/listar-eventos-tabla/listar-eventos-tabla.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { LikeEventosComponent } from './components/events/like-eventos/like-even
     MenuBusquedaComponent,
     ProximosEventosComponent,
     LikeEventosComponent,
+    ListarEventosTablaComponent,
   ],
   imports: [
     BrowserModule,
