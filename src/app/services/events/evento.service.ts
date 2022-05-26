@@ -66,9 +66,19 @@ export class EventoService {
     );
   }
 
+  deleteLike(eventoId: number): Observable<any> {
+    return this.http.delete(
+      `${this.urlLikes}/deleteLike.php?usuarioId=${this.userId}&eventoId=${eventoId}`
+    );
+  }
+
   getLikeEvents(): Observable<any> {
     return this.http.get(
       `${this.urlLikes}/readLike.php?usuarioId=${this.userId}`
     );
+  }
+
+  readEvent(eventoId: number): Observable<any> {
+    return this.http.get(`${this.url}/readEvent.php?eventoId=${eventoId}`);
   }
 }

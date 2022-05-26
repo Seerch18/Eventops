@@ -1,0 +1,13 @@
+.selectP:hover {
+  background-color: #198754;
+  color: white;
+}
+
+.selectP {
+  color: #198754;
+}
+
+.selectP:focus {
+  background-color: white;
+  color: #198754;
+}

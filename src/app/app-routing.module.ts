@@ -6,6 +6,7 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
 import { CrearEventoComponent } from './components/events/crear-evento/crear-evento.component';
 import { LikeEventosComponent } from './components/events/like-eventos/like-eventos.component';
+import { ListarEventosComponent } from './components/admin/listar-eventos/listar-eventos.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent },
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'likes',
     component: LikeEventosComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/listEvents',
+    component: ListarEventosComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', component: BodyComponent },

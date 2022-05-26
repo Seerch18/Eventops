@@ -11,6 +11,7 @@ import {
 import { AuthService } from '@auth0/auth0-angular';
 import { CiudadService } from '../../../services/ciudad/ciudad.service';
 import { FiltrosService } from '../../../services/filtros/filtros.service';
+import { EtiquetaService } from '../../../services/etiquetas/etiqueta.service';
 
 @Component({
   selector: 'app-menu-busqueda',
@@ -20,6 +21,7 @@ import { FiltrosService } from '../../../services/filtros/filtros.service';
 export class MenuBusquedaComponent implements OnInit {
   public frmFiltro: FormGroup;
   public cities: Array<any>;
+  public tags: Array<any>;
   @Output() eventos = new EventEmitter<any>();
 
   constructor(
@@ -27,13 +29,15 @@ export class MenuBusquedaComponent implements OnInit {
     private _router: Router,
     private params: ActivatedRoute,
     private auth: AuthService,
-    private ciudad: CiudadService,
-    private filtros: FiltrosService
+    private ciudadService: CiudadService,
+    private filtroService: FiltrosService,
+    private etiquetaService: EtiquetaService
   ) {
     this.cities = [];
+    this.tags = [];
     this.frmFiltro = this.frmBuilder.group({
       ciudad: new FormControl(''),
-      etiqueta: new FormControl(''),
+      etiquetas: new FormControl(''),
       fechaInicio: new FormControl(''),
       fechaFin: new FormControl(''),
       horaInicio: new FormControl(''),
@@ -43,21 +47,30 @@ export class MenuBusquedaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCities();
+    this.getTags();
   }
 
   filtrarEventos() {
     console.log(this.frmFiltro.value);
-    this.filtros.getFilteredEvents(this.frmFiltro.value).subscribe((resp) => {
-      if (resp) {
+    this.filtroService
+      .getFilteredEvents(this.frmFiltro.value)
+      .subscribe((resp) => {
         this.eventos.emit(resp);
+      });
+  }
+
+  getCities() {
+    this.ciudadService.readCity().subscribe((resp) => {
+      if (resp) {
+        this.cities = resp;
       }
     });
   }
 
-  getCities() {
-    this.ciudad.readCity().subscribe((resp) => {
+  getTags() {
+    this.etiquetaService.readTags().subscribe((resp) => {
       if (resp) {
-        this.cities = resp;
+        this.tags = resp;
       }
     });
   }

@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { AuthService } from '../../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
 
 @Component({
   selector: 'app-listar-eventos-tabla',
@@ -26,7 +28,8 @@ export class ListarEventosTablaComponent implements OnInit {
 
   constructor(
     private eventoService: EventoService,
-    private auth: AuthService
+    private auth: AuthService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -42,7 +45,15 @@ export class ListarEventosTablaComponent implements OnInit {
       .subscribe((resp) => console.log(resp));
   }
 
-  verEvento(eventoId: number) {
-    // ventana modal que muestre el evento
+  openDialog(eventoId: number) {
+    this.eventoService.readEvent(eventoId).subscribe((resp) => {
+      if (resp) {
+        this.dialog.open(ModalEventoComponent, {
+          height: '600px',
+          width: '800px',
+          data: resp,
+        });
+      }
+    });
   }
 }

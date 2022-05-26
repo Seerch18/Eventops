@@ -17,6 +17,12 @@ export class BodyComponent implements OnInit {
   ngOnInit(): void {}
 
   mostrarEventosFiltrados(eventos: any) {
-    this.filteredEvents = eventos;
+    console.log(eventos);
+    if (eventos) {
+      this.filteredEvents = eventos;
+    } else {
+      this.filteredEvents = [];
+    }
+    console.log(this.filteredEvents.length);
   }
 }

@@ -8,17 +8,16 @@
 
         <!-- filtrar por ciudad -->
         <li class="nav-item mb-2">
-            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
+            <!-- <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
                 data-bs-toggle="collapse" data-bs-target="#collapseCity" aria-expanded="false"
-                aria-controls="collapseCity">Ciudad</button>
-            <div class="collapse mt-2" id="collapseCity">
-                <div class="card card-body">
-                    <select class="form-select" formControlName="ciudad">
-                        <option selected disabled>Ciudad</option>
-                        <option *ngFor="let ele of cities;" value="{{ele.id}}">{{ele.nombre}}</option>
-                    </select>
-                </div>
-            </div>
+                aria-controls="collapseCity">Ciudad</button> -->
+            <!-- <div class="collapse mt-2" id="collapseCity"> -->
+            <select class="form-select rounded-pill border-success selectP" formControlName="ciudad">
+                <option selected value="">Ciudad</option>
+                <option disabled value="">- - - - - - -</option>
+                <option *ngFor="let ele of cities;" value="{{ele.id}}">{{ele.nombre}}</option>
+            </select>
+            <!-- </div> -->
         </li>
 
         <!-- filtrar por categorías -->
@@ -28,11 +27,15 @@
                 aria-controls="collapseCateg">Categorías</button>
             <div class="collapse mt-2" id="collapseCateg">
                 <div class="card card-body">
-                    <select class="form-select" formControlName="etiqueta">
-                        <option selected>Categorías</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <!-- <select class="form-select" formControlName="etiqueta">
+                        <option selected value="">Categorías</option>
+                        <option disabled value="">- - - - - - - - - -</option>
+                        <option *ngFor="let ele of tags;" value="{{ele.id}}">{{ele.nombre}}</option>
+                    </select> -->
+                    <select class="form-select" multiple aria-label="multiple select example" formControlName="etiquetas">
+                        <option selected value="">Categorías</option>
+                        <option disabled value="">- - - - - - - - - -</option>
+                        <option *ngFor="let ele of tags;" value="{{ele.id}}">{{ele.nombre}}</option>
                     </select>
                 </div>
             </div>

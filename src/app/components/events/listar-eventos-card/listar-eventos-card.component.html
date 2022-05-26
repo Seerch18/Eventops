@@ -1,0 +1,36 @@
+<div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+    <div class="card m-2" style="width: 18rem;" *ngFor="let ele of aEventos;">
+        <div class="card-body shadow bg-light">
+            <h5 class="card-title">{{ele.nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Inicio: {{ele.fechaInicio}}</h6>
+            <p class="card-text">{{ele.descripcion}}</p>
+            <!-- acciones -->
+            <!-- <div *ngIf="!inLikeUrl">
+                <a routerLink="/saveEvent/{{ele.id}}"><button type="button"
+                        class="card-link btn btn-primary">Editar</button></a>
+                <button type="button" (click)="eliminarEvento(ele.id)"
+                    class="card-link btn btn-danger m-2">Borrar</button>
+            </div> -->
+            <div class="d-flex bd-highlight mb-3">
+                <div class="bd-highlight" *ngIf="!inLikeUrl">
+                    <a routerLink="/saveEvent/{{ele.id}}"><button type="button"
+                            class="card-link btn btn-primary">Editar</button></a>
+                </div>
+                <div class="bd-highlight ms-2" *ngIf="!inLikeUrl">
+                    <button type="button" (click)="eliminarEvento(ele.id)"
+                        class="card-link btn btn-danger">Borrar</button>
+                </div>
+                <div class="ms-auto p-2 bd-highlight" *ngIf="inLikeUrl">
+                    <button mat-icon-button color="warn" (click)="deleteLike(ele.id)">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+                <div class="ms-auto p-2 bd-highlight">
+                    <button mat-icon-button color="" (click)="openDialog(ele.id)" matTooltip="Ver evento">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

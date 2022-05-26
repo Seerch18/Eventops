@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { EventoService } from '../../../services/events/evento.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Evento } from '../../../models/Evento';
@@ -9,6 +9,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
+// import { COMMA, ENTER } from '@angular/cdk/keycodes';
+// import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+// import { MatChipInputEvent } from '@angular/material/chips';
+// import { Observable } from 'rxjs';
+// import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-evento',
@@ -107,19 +112,19 @@ export class CrearEventoComponent implements OnInit {
 
   // añadir datos a los campos del formulario
   addDataFields(id: any) {
-      this.eventoService.getEvent(id).subscribe((evento) => {
-        this.evento = evento;
-        let fechaInicio = this.evento.fechaInicio.split(' ');
+    this.eventoService.getEvent(id).subscribe((evento) => {
+      this.evento = evento;
+      let fechaInicio = this.evento.fechaInicio.split(' ');
 
-        this.datosCampoUbicacion(this.evento.ubicacion);
-        this.datosCamposFormulario(
-          this.evento.nombre,
-          this.evento.descripcion,
-          fechaInicio[0],
-          fechaInicio[1],
-          this.evento.precio
-        );
-      });
+      this.datosCampoUbicacion(this.evento.ubicacion);
+      this.datosCamposFormulario(
+        this.evento.nombre,
+        this.evento.descripcion,
+        fechaInicio[0],
+        fechaInicio[1],
+        this.evento.precio
+      );
+    });
   }
 
   // elimina un evento y borra los datos de los campos del formulario

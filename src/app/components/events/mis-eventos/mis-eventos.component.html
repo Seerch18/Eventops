@@ -1,12 +1,1 @@
-<div class="d-flex flex-row flex-wrap bd-highlight mb-3">
-    <div class="card m-2" style="width: 18rem;" *ngFor="let ele of listEvents;">
-        <div class="card-body shadow bg-light">
-            <h5 class="card-title">{{ele.nombre}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Inicio: {{ele.fechaInicio}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">FIn: {{ele.fechaFin}}</h6>
-            <p class="card-text">{{ele.descripcion}}</p>
-            <a routerLink="/saveEvent/{{ele.id}}"><button type="button" class="card-link btn btn-primary">Editar</button></a>
-            <button type="button" (click)="eliminarEvento(ele.id)" class="card-link btn btn-danger m-2">Borrar</button>
-        </div>
-    </div>
-</div>
+<app-listar-eventos-card [aEventos]="listEvents"></app-listar-eventos-card>

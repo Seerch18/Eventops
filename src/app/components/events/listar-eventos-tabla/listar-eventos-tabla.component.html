@@ -40,9 +40,12 @@
                 <!-- <i class="fa-solid fa-heart"></i> -->
                 <i class="fa-regular fa-heart"></i>
             </button>
-            <button type="button" class="m-3 btn btn-light" matTooltip="Ver evento" (click)="verEvento(element.id)">
+            <!-- <button type="button" class="m-3 btn btn-light" matTooltip="Ver evento" (click)="verEvento(element.id)">
                 <i class="fa-solid fa-eye"></i>
-            </button>
+            </button> -->
+            <button mat-button (click)="openDialog(element.id)" matTooltip="Ver evento" class="btn btn-light"><i
+                    class="fa-solid fa-eye"></i></button>
+
         </td>
     </ng-container>
 
@@ -55,5 +58,5 @@
 </mat-paginator>
 
 <div *ngIf="aEventos.length==0" class="alert alert-dark text-center mt-3">
-    <h6 class="alert-heading">En estos momentos no hay eventos</h6>
+    <h6 class="alert-heading">No se encuentran eventos.</h6>
 </div>

@@ -12,44 +12,50 @@
 
 <div class="d-flex flex-column p-3 bg-light">
 
-    <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+  <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <span class="fs-4">MENU</span>
     </a> -->
-    <h4>MENU</h4>
+  <h4>MENU</h4>
 
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
 
-      <li class="nav-item">
-        <a routerLink="saveEvent" class="nav-link link-dark" aria-current="page">
-          <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-plus"></i></span>
-          Crear Evento
-        </a>
-      </li>
+    <li class="nav-item">
+      <a routerLink="saveEvent" class="nav-link link-dark" aria-current="page">
+        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-plus"></i></span>
+        Crear Evento
+      </a>
+    </li>
+    
+    <li>
+      <a routerLink="listEvents" class="nav-link link-dark">
+        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-eye"></i></span>
+        Mis Eventos
+      </a>
+    </li>
 
-      <li>
-        <a routerLink="listEvents" class="nav-link link-dark">
-          <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-eye"></i></span>
-          Mis Eventos
-        </a>
-      </li>
+    <li>
+      <a routerLink="/likes" class="nav-link link-dark">
+        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-heart"></i></span>
+        Me gustan
+      </a>
+    </li>
 
-      <li>
-        <a routerLink="/likes" class="nav-link link-dark">
-            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-heart"></i></span>
-          Me gustan
-        </a>
-      </li>
+    <li>
+      <a routerLink="#" class="nav-link link-dark">
+        Más Eventos
+      </a>
+    </li>
 
-      <li>
-        <a routerLink="#" class="nav-link link-dark">
-          Más Eventos
-        </a>
-      </li>
+    <li *ngIf="isAdmin">
+      <a routerLink="admin/listEvents" class="nav-link link-dark">
+        Todos los eventos
+      </a>
+    </li>
 
-    </ul>
-    <hr>
-    <!-- <div class="dropdown">
+  </ul>
+  <hr>
+  <!-- <div class="dropdown">
       <a routerLink="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong>Perfíl</strong>
@@ -62,4 +68,4 @@
         <li><a class="dropdown-item" routerLink="#">Sign out</a></li>
       </ul>
     </div> -->
-  </div>
+</div>

@@ -31,6 +31,9 @@ import { ProximosEventosComponent } from './components/events/proximos-eventos/p
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LikeEventosComponent } from './components/events/like-eventos/like-eventos.component';
 import { ListarEventosTablaComponent } from './components/events/listar-eventos-tabla/listar-eventos-tabla.component';
+import { ModalEventoComponent } from './components/events/modal-evento/modal-evento.component';
+import { ListarEventosCardComponent } from './components/events/listar-eventos-card/listar-eventos-card.component';
+import { ListarEventosComponent } from './components/admin/listar-eventos/listar-eventos.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { ListarEventosTablaComponent } from './components/events/listar-eventos-
     ProximosEventosComponent,
     LikeEventosComponent,
     ListarEventosTablaComponent,
+    ModalEventoComponent,
+    ListarEventosCardComponent,
+    ListarEventosComponent,
   ],
   imports: [
     BrowserModule,
