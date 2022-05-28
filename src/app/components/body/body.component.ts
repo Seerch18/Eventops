@@ -9,20 +9,28 @@ import { EventoService } from '../../services/events/evento.service';
 })
 export class BodyComponent implements OnInit {
   public filteredEvents: Array<any>;
+  public markers: Array<any>;
 
   constructor() {
     this.filteredEvents = [];
+    this.markers = [];
   }
 
   ngOnInit(): void {}
 
   mostrarEventosFiltrados(eventos: any) {
-    console.log(eventos);
     if (eventos) {
       this.filteredEvents = eventos;
     } else {
       this.filteredEvents = [];
     }
-    console.log(this.filteredEvents.length);
+    if (this.filteredEvents.length != 0) {
+      this.markers = [];
+      console.log(this.markers);
+      this.filteredEvents.forEach((element) => {
+        this.markers.push(element.ubicacion);
+      });
+      // console.log(this.markers);
+    }
   }
 }

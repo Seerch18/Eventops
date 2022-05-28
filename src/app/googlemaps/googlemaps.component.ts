@@ -13,6 +13,7 @@ import { DOCUMENT } from '@angular/common';
 import { GooglemapsService } from './service/googlemaps.service';
 import { EventoService } from '../services/events/evento.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-googlemaps',
@@ -20,18 +21,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./googlemaps.component.css'],
 })
 export class GooglemapsComponent implements OnInit {
-  @Input() numEventosRecientes:any;
+  @Input() markers: any;
+  @Input() aMarkers: google.maps.Marker[] = [];
   @Input() currentPosition: any; // posición actual
   @Output() newPositionEvent = new EventEmitter<any>(); // enviar la nueva posición al contenedor padre
   // posición en el mapa
   @Input() position = {
     lat: 37.88785365229443,
     lng: -4.779458242357073,
-  };
-
-  pruebaPosition = {
-    lat: 37.881693635982174,
-    lng: -4.790672517875474,
   };
 
   // información del InfoWindow
@@ -62,7 +59,6 @@ export class GooglemapsComponent implements OnInit {
       this.addCurrentPosition();
     }
     this.init();
-    // console.log(this.numEventosRecientes);
   }
 
   async init() {
@@ -96,16 +92,10 @@ export class GooglemapsComponent implements OnInit {
       draggable: false,
     });
 
-    // crear marcadores según el númer de eventos recibidos
-    this.pruebaMarker = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      draggable: false,
-    });
-
     this.infowindow = new google.maps.InfoWindow();
 
-    this.clickHandleEvent(); // añade un evento click al mapa
+    this.clickHandleEvent(this.map); // añade un evento click al mapa
+    this.deleteMarkers();
 
     if (this.label.titulo.length) {
       // esta condición no es necesaria
@@ -115,14 +105,32 @@ export class GooglemapsComponent implements OnInit {
     this.currentLocation(); // marca en el mapa la ubicación en la que se encuentra el usuario (va mal)
   }
 
-  clickHandleEvent() {
+  clickHandleEvent(map: any) {
     this.map.addListener('click', (event: any) => {
+      // añadir eventos filtrados al mapa
+      // --------------------------------------
+      if (this.markers) {
+        console.log(this.markers);
+        this.markers.forEach((element: any) => {
+          let latLng = element.split(';');
+          const marker = new google.maps.Marker({
+            position: {
+              lat: parseFloat(latLng[0]),
+              lng: parseFloat(latLng[1]),
+            },
+            map,
+          });
+          this.aMarkers.push(marker);
+        });
+      }
+      // -------------------------------------
+
       const position = {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       };
       // añade la nueva posición al input de ubicación
-      this.addNewPosition(position);
+      this.addNewPosition(position); // (/saveEvent)
       if (this.label.titulo.length) {
         this.addMarker(position);
         this.setInfoWindow(
@@ -233,5 +241,35 @@ export class GooglemapsComponent implements OnInit {
   addCurrentPosition() {
     if (this.currentPosition != null && this.currentPosition != '')
       this.position = this.currentPosition;
+  }
+
+  // addFilteredEventsMap(markers: any, map: any) {
+  //   if (markers) {
+  //     markers.forEach((element: any) => {
+  //       let latLng = element.split(';');
+  //       new google.maps.Marker({
+  //         position: {
+  //           lat: parseFloat(latLng[0]),
+  //           lng: parseFloat(latLng[1]),
+  //         },
+  //         map,
+  //       });
+  //     });
+  //   }
+  // }
+
+  // Sets the map on all markers in the array.
+  setMapOnAll(map: google.maps.Map | null) {
+    for (let i = 0; i < this.aMarkers.length; i++) {
+      this.aMarkers[i].setMap(map);
+    }
+  }
+
+  deleteMarkers(): void {
+    this.map.addListener('dblclick', (event: any) => {
+      console.log("entra");
+      this.setMapOnAll(null);
+      this.aMarkers = [];
+    });
   }
 }

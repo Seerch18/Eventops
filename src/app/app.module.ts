@@ -69,27 +69,27 @@ import { ListarEventosComponent } from './components/admin/listar-eventos/listar
       clientId: 'kuq2N6i9avOgbN2zFhloF7HAacDxxu96',
 
       // Request this audience at user authentication time
-      audience: 'https://dev-dyft8jys.us.auth0.com/api/v2/',
+      // audience: 'https://dev-dyft8jys.us.auth0.com/api/v2/',
 
-      // Request this scope at user authentication time
-      scope: 'read:current_user',
+      // // Request this scope at user authentication time
+      // scope: 'read:current_user',
 
-      // Specify configuration for the interceptor
-      httpInterceptor: {
-        allowedList: [
-          {
-            // Match any request that starts 'https://dev-dyft8jys.us.auth0.com/api/v2/' (note the asterisk)
-            uri: 'https://dev-dyft8jys.us.auth0.com/api/v2/*',
-            tokenOptions: {
-              // The attached token should target this audience
-              audience: 'https://dev-dyft8jys.us.auth0.com/api/v2/',
+      // // Specify configuration for the interceptor
+      // httpInterceptor: {
+      //   allowedList: [
+      //     {
+      //       // Match any request that starts 'https://dev-dyft8jys.us.auth0.com/api/v2/' (note the asterisk)
+      //       uri: 'https://dev-dyft8jys.us.auth0.com/api/v2/*',
+      //       tokenOptions: {
+      //         // The attached token should target this audience
+      //         audience: 'https://dev-dyft8jys.us.auth0.com/api/v2/',
 
-              // The attached token should have these scopes
-              scope: 'read:current_user',
-            },
-          },
-        ],
-      },
+      //         // The attached token should have these scopes
+      //         scope: 'read:current_user',
+      //       },
+      //     },
+      //   ],
+      // },
     }),
     HttpClientModule,
     AgmCoreModule.forRoot({

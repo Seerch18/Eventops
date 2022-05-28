@@ -15,7 +15,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLSUser();
-    console.log('Usuario ' + this.user);
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
         console.log('pasa');
@@ -26,7 +25,6 @@ export class MenuComponent implements OnInit {
 
   getLSUser() {
     if (localStorage.getItem('user')) {
-      console.log(JSON.parse(localStorage.getItem('user')!));
       this.user = JSON.parse(localStorage.getItem('user')!);
       console.log(this.user);
     }
