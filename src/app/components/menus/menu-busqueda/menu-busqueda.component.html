@@ -85,7 +85,7 @@
     </ul>
 </form> -->
 
-<h3>Filtros Búsqueda</h3>
+<h3>{{"FILTROS.TITLE" | translate}}</h3>
 <mat-divider></mat-divider>
 
 <form [formGroup]="frmFiltro" (submit)="filtrarEventos()" class="mt-2">
@@ -95,7 +95,7 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Ciudad
+                    {{"FILTROS.CIUDAD" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-select placeholder="Select an option" formControlName="ciudad">
@@ -109,11 +109,11 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Categorías
+                    {{"FILTROS.CATEG" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-select multiple formControlName="etiquetas" placeholder="Etiquetas">
+            <mat-select multiple formControlName="etiquetas" placeholder="{{'EVENTO.ETIQUETAS' | translate}}">
                 <mat-option *ngFor="let ele of tags" [value]="ele.id">{{ele.nombre}}
                 </mat-option>
             </mat-select>
@@ -123,31 +123,31 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Fecha Inicio / Fin
+                    {{"FILTROS.FECHA" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <label for="dateStart">Inicio</label>
+            <label for="dateStart">{{"FILTROS.INICIO" | translate}}</label>
             <input type="date" id="dateStart" class="form-control mb-2" formControlName="fechaInicio" />
-            <label for="dateEnd">Fin</label>
+            <label for="dateEnd">{{"FILTROS.FIN" | translate}}</label>
             <input type="date" id="dateEnd" class="form-control" formControlName="fechaFin" />
         </mat-expansion-panel>
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Hora Inicio / Fin
+                    {{"FILTROS.HORA" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <label for="timeStart">Inicio</label>
+            <label for="timeStart">{{"FILTROS.INICIO" | translate}}</label>
             <input type="time" id="timeStart" class="form-control mb-2" formControlName="horaInicio" />
-            <label for="timeEnd">Fin</label>
+            <label for="timeEnd">{{"FILTROS.FIN" | translate}}</label>
             <input type="time" id="timeEnd" class="form-control" formControlName="horaFin" />
         </mat-expansion-panel>
 
     </mat-accordion>
 
     <button mat-icon-button color="primary" matTooltip="Buscar" class="w-100 rounded-pill text-center border mt-3">
-        Buscar <i class="fa-solid fa-magnifying-glass"></i>
+        {{"FILTROS.BUSCAR" | translate}} <i class="fa-solid fa-magnifying-glass"></i>
     </button>
 
     <!-- <button class="btn btn-outline-success w-100 rounded-pill text-center" type="submit">

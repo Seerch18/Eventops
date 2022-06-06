@@ -28,15 +28,16 @@
             <!-- acciónes -->
             <div class="col-2">
                 <a routerLink="/saveEvent/{{ele.id}}" *ngIf="isAdmin">
-                    <button mat-icon-button color="primary" matTooltip="editar">
+                    <button mat-icon-button color="primary" matTooltip="{{'BOTONES.EDITAR' | translate}}">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </a>
-                <button mat-icon-button color="warn" matTooltip="eliminar" (click)="eliminarEvento(ele.id)"
-                    *ngIf="isAdmin">
+                <button mat-icon-button color="warn" matTooltip="{{'BOTONES.ELIMINAR' | translate}}"
+                    (click)="eliminarEvento(ele.id)" *ngIf="isAdmin">
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-icon-button color="primary" matTooltip="me gusta" (click)="likeOrDeleteLike(ele.id)">
+                <button mat-icon-button color="primary" matTooltip="{{'BOTONES.LIKE' | translate}}"
+                    (click)="likeOrDeleteLike(ele.id)">
                     <mat-icon>favorite</mat-icon>
                 </button>
                 <!-- <button mat-icon-button matTooltip="Ver evento" (click)="openDialog(ele.id)"><i
@@ -47,5 +48,5 @@
 </div>
 
 <div *ngIf="aEventos.length==0" class="alert alert-dark text-center mt-3">
-    <h6 class="alert-heading">No se encuentran eventos.</h6>
+    <h6 class="alert-heading">{{"LISTA_EVENTOS.NO_EVENTOS" | translate}}</h6>
 </div>

@@ -1,5 +1,6 @@
 import { NgLocaleLocalization } from '@angular/common';
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ export class AppComponent {
   public menu_col: string = 'col-2';
   public body_col: string = 'col-12';
 
-  constructor() {
+  constructor(private translateService: TranslateService) {
+    this.translateService.setDefaultLang('English');
+    this.translateService.addLangs(['Espaniol', 'English']);
     this.isAuth = false;
   }
 

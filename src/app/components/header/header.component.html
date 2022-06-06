@@ -17,15 +17,27 @@
     </a>
 
     <ul class="navbar-nav flex-row me-2">
+
+        <li class="nav-item pt-2 me-3">
+            <!-- <button mat-icon-button color="primary" matTooltip="Cambiar Idioma" (click)="changeLang($event)">
+                <i class="fa-solid fa-globe"></i>
+            </button> -->
+            <mat-select placeholder="Elige el idioma" (valueChange)="changeLang($event)" [(value)]="selected">
+                <mat-option *ngFor="let lang of langs" [value]="lang">
+                    {{lang}}
+                </mat-option>
+            </mat-select>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" routerLink="/login" *ngIf="!isAuth">
-                <button class="btn btn-primary">Sing in</button>
+                <button class="btn btn-primary">{{"LOGIN.LOGIN" | translate}}</button>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" routerLink="/register" *ngIf="!isAuth">
-                <button class="btn btn-primary">Sign up</button>
+                <button class="btn btn-primary">{{"REGISTRO.REGISTRO" | translate}}</button>
             </a>
         </li>
 
@@ -40,17 +52,17 @@
                     <li class="nav-item">
                         <a routerLink="saveEvent" class="nav-link link-dark">
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-plus"></i></span>
-                            Crear Evento
+                            {{"EVENTO.BOTON_CREAR" | translate}}
                         </a>
                     </li>
                     <li><a class="dropdown-item" routerLink="#">
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-gear"></i></span>
-                            Settings
+                            {{"PERFIL.AJUSTES" | translate}}
                         </a>
                     </li>
                     <li><a class="dropdown-item" routerLink="profile">
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-user"></i></span>
-                            Profile
+                            {{"PERFIL.PERFIL" | translate}}
                         </a>
                     </li>
                     <li>

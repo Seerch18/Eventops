@@ -1,0 +1,88 @@
+{
+  "FORM_VALIDS": {
+    "REQUIRED": "Required data",
+    "EMAIL": "Incorrect Format (Ex: example@example.com)",
+    "INVALID": "Invalid Credentials",
+    "LENGTH": "Password length must be at least 8 characters"
+  },
+  "LOGIN": {
+    "EMAIL": "Mail address",
+    "PASSWORD": "Password",
+    "LOGIN": "Log in"
+  },
+  "REGISTRO": {
+    "NICK": "Nick",
+    "NOMBRE": "Name",
+    "EMAIL": "Mail address",
+    "PASSWORD": "Password",
+    "REGISTRO": "Sign Up"
+  },
+  "LOGOUT": {
+    "LOGOUT": "Log Out"
+  },
+  "LISTA_USU": {
+    "NICK": "Nick",
+    "NOMBRE": "Name",
+    "EMAIL": "Mail address",
+    "NO_USERS": "No users found"
+  },
+  "BOTONES": {
+    "CREAR": "Create",
+    "GUARDAR": "Save",
+    "EDITAR": "Edit",
+    "ELIMINAR": "Delete",
+    "BORRAR": "Delete",
+    "ACTUALIZAR": "Update",
+    "VER_EVENTO": "See event",
+    "NO_LIKE": "Remove like",
+    "LIKE": "Like"
+  },
+  "BODY": {
+    "RESULTADO": "Search result:",
+    "PROX": "Upcoming events"
+  },
+  "DIALOG": {
+    "TITLE": "Delete Record",
+    "CONTENT": "Are you sure you want to delete the record?",
+    "NO": "No",
+    "SI": "Yes"
+  },
+  "EVENTO": {
+    "NOMBRE": "Name of the event",
+    "DESCRIPCION": "Description of the event",
+    "FECHA_INICIO": "Start date",
+    "HORA_INICIO": "Start Time",
+    "ETIQUETAS": "Tags",
+    "BOTON_GUARDAR": "Save Event",
+    "BOTON_CANCELAR": "Cancel Event",
+    "FECHA_HORA_INICIO": "Start Date/Time",
+    "BOTON_CREAR": "Create Event"
+  },
+  "LISTA_EVENTOS": {
+    "NO_EVENTOS": "No events found"
+  },
+  "PERFIL": {
+    "AJUSTES": "Settings",
+    "PERFIL": "Profile",
+    "AVATAR": "Profile picture",
+    "HEADER": "Account details"
+  },
+  "MENU": {
+    "TITLE": "MENU",
+    "CREAR_EVENTO": "Create Event",
+    "MIS_EVENTOS": "My Events",
+    "ME_GUSTAN": "Like",
+    "LISTA_EVENTOS": "Events List",
+    "LISTA_USU": "User List"
+  },
+  "FILTROS": {
+    "TITLE": "Filters Search",
+    "CIUDAD": "City",
+    "CATEG": "Categories",
+    "FECHA": "Start / End Date",
+    "INICIO": "Start",
+    "FIN": "End",
+    "HORA": "Start / End Time",
+    "BUSCAR": "Search"
+  }
+}

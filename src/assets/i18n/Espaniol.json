@@ -1,0 +1,88 @@
+{
+  "FORM_VALIDS": {
+    "REQUIRED": "Dato requerido",
+    "EMAIL": "Formato Incorrecto (Ej: ejemplo@ejemplo.com)",
+    "INVALID": "Credenciales Inválidos",
+    "LENGTH": "La longitud de la contraseña debe de ser mínimo de 8 caracteres"
+  },
+  "LOGIN": {
+    "EMAIL": "Dirección de correo",
+    "PASSWORD": "Contraseña",
+    "LOGIN": "Entrar"
+  },
+  "REGISTRO": {
+    "NICK": "Nick",
+    "NOMBRE": "Nombre",
+    "EMAIL": "Dirección de correo",
+    "PASSWORD": "Contraseña",
+    "REGISTRO": "Registrar"
+  },
+  "LOGOUT": {
+    "LOGOUT": "Salir"
+  },
+  "LISTA_USU": {
+    "NICK": "Nick",
+    "NOMBRE": "Nombre",
+    "EMAIL": "Dirección de correo",
+    "NO_USERS": "No se encuentran usuarios"
+  },
+  "BOTONES": {
+    "CREAR": "Crear",
+    "GUARDAR": "Guardar",
+    "EDITAR": "Editar",
+    "ELIMINAR": "Eliminar",
+    "BORRAR": "Borrar",
+    "ACTUALIZAR": "Actualizar",
+    "VER_EVENTO": "Ver evento",
+    "NO_LIKE": "Quitar me gusta",
+    "LIKE": "Me gusta"
+  },
+  "BODY": {
+    "RESULTADO": "Resultado de la búsqueda: ",
+    "PROX": "Próximos Eventos"
+  },
+  "DIALOG": {
+    "TITLE": "Eliminar Registro",
+    "CONTENT": "¿Estás seguro de eliminar el registro?",
+    "NO": "No",
+    "SI": "Si"
+  },
+  "EVENTO": {
+    "NOMBRE": "Nombre del Evento",
+    "DESCRIPCION": "Descripción del Evento",
+    "FECHA_INICIO": "Fecha Inicio",
+    "HORA_INICIO": "Hora Inicio",
+    "ETIQUETAS": "Etiquetas",
+    "BOTON_GUARDAR": "Guardar Evento",
+    "BOTON_CANCELAR": "Cancelar Evento",
+    "FECHA_HORA_INICIO": "Fecha/Hora Inicio",
+    "BOTON_CREAR": "Crear Evento"
+  },
+  "LISTA_EVENTOS": {
+    "NO_EVENTOS": "No se encuentran eventos"
+  },
+  "PERFIL": {
+    "AJUSTES": "Ajustes",
+    "PERFIL": "Perfil",
+    "AVATAR": "Foto de Perfil",
+    "HEADER": "Detalles de la cuenta"
+  },
+  "MENU": {
+    "TITLE": "MENÚ",
+    "CREAR_EVENTO": "Crear Evento",
+    "MIS_EVENTOS": "Mis Eventos",
+    "ME_GUSTAN": "Me Gustan",
+    "LISTA_EVENTOS": "Listado de Eventos",
+    "LISTA_USU": "Listado de Usuarios"
+  },
+  "FILTROS": {
+    "TITLE": "Filtros Búsqueda",
+    "CIUDAD": "Ciudad",
+    "CATEG": "Categorías",
+    "FECHA": "Fecha Inicio / Fin",
+    "INICIO": "Inicio",
+    "FIN": "Fin",
+    "HORA": "Hora Inicio / Fin",
+    "BUSCAR": "Buscar"
+  }
+}

@@ -7,14 +7,14 @@
                         <!-- Nombre input -->
                         <div class="form-outline mb-4">
                             <input type="text" id="name" class="form-control" formControlName="name" />
-                            <label class="form-label" for="name">Nombre del Evento</label>
+                            <label class="form-label" for="name">{{"EVENTO.NOMBRE" | translate}}</label>
                         </div>
 
                         <!-- Descripción input -->
                         <div class="form-outline mb-4">
                             <textarea class="form-control" id="description" rows="4"
                                 formControlName="description"></textarea>
-                            <label class="form-label" for="description">Descripción del Evento</label>
+                            <label class="form-label" for="description">{{"EVENTO.DESCRIPCION" | translate}}</label>
                         </div>
 
                         <div class="row mb-4">
@@ -23,7 +23,8 @@
                                 <div class="form-outline">
                                     <input type="date" id="dateStart" class="form-control" formControlName="dateStart"
                                         min="{{fechaMin | fecha}}" />
-                                    <label class="form-label" for="dateStart">Fecha Inicio</label>
+                                    <label class="form-label" for="dateStart">{{"EVENTO.FECHA_INICIO" |
+                                        translate}}</label>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +35,8 @@
                                 <div class="form-outline">
                                     <input type="time" id="timeStart" class="form-control"
                                         formControlName="timeStart" />
-                                    <label class="form-label" for="timeStart">Hora Inicio</label>
+                                    <label class="form-label" for="timeStart">{{"EVENTO.HORA_INICIO" |
+                                        translate}}</label>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +46,7 @@
                         <div class="form-outline mb-4">
 
                             <mat-form-field>
-                                <mat-label>Etiquetas</mat-label>
+                                <mat-label>{{"EVENTO.ETIQUETAS" | translate}}</mat-label>
                                 <mat-select multiple formControlName="tags">
                                     <mat-option *ngFor="let tag of tagsList" [value]="tag.id">{{tag.nombre}}
                                     </mat-option>
@@ -66,11 +68,9 @@
 
                         <!-- Submit button -->
                         <button type="submit" id="botonEvento" [disabled]="frmEvento.invalid"
-                            class="btn btn-primary mb-4">Guardar
-                            Evento</button>
+                            class="btn btn-primary mb-4">{{"EVENTO.BOTON_GUARDAR" | translate}}</button>
                         <button type="button" id="botonCancelarBorrar" (click)="cancelarBorrarEvento()"
-                            class="btn btn-danger ms-2 mb-4">Cancelar
-                            Evento</button>
+                            class="btn btn-danger ms-2 mb-4">{{"EVENTO.BOTON_CANCELAR" | translate}}</button>
                     </form>
                 </div>
                 <div class="col-6">

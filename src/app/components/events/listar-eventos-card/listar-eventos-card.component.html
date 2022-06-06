@@ -14,19 +14,21 @@
             <div class="d-flex bd-highlight mb-3">
                 <div class="bd-highlight" *ngIf="!inLikeUrl">
                     <a routerLink="/saveEvent/{{ele.id}}"><button type="button"
-                            class="card-link btn btn-primary">Editar</button></a>
+                            class="card-link btn btn-primary">{{"BOTONES.EDITAR" | translate}}</button></a>
                 </div>
                 <div class="bd-highlight ms-2" *ngIf="!inLikeUrl">
                     <button type="button" (click)="eliminarEvento(ele.id)"
-                        class="card-link btn btn-danger">Borrar</button>
+                        class="card-link btn btn-danger">{{"BOTONES.BORRAR" | translate}}</button>
                 </div>
                 <div class="ms-auto p-2 bd-highlight" *ngIf="inLikeUrl">
-                    <button mat-icon-button color="warn" (click)="deleteLike(ele.id)">
+                    <button mat-icon-button color="warn" (click)="deleteLike(ele.id)"
+                        matTooltip="{{'BOTONES.NO_LIKE' | translate}}">
                         <mat-icon>favorite</mat-icon>
                     </button>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">
-                    <button mat-icon-button color="" (click)="openDialog(ele.id)" matTooltip="Ver evento">
+                    <button mat-icon-button color="" (click)="openDialog(ele.id)"
+                        matTooltip="{{'BOTONES.VER_EVENTO' | translate}}">
                         <i class="fa-solid fa-eye"></i>
                     </button>
                 </div>

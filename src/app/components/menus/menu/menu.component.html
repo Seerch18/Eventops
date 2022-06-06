@@ -15,7 +15,7 @@
   <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <span class="fs-4">MENU</span>
     </a> -->
-  <h4>MENU</h4>
+  <h4>{{"MENU.TITLE" | translate}}</h4>
 
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
@@ -23,21 +23,21 @@
     <li class="nav-item">
       <a routerLink="saveEvent" class="nav-link link-dark" aria-current="page">
         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-plus"></i></span>
-        Crear Evento
+        {{"MENU.CREAR_EVENTO" | translate}}
       </a>
     </li>
 
     <li>
       <a routerLink="listEvents" class="nav-link link-dark">
         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-eye"></i></span>
-        Mis Eventos
+        {{"MENU.MIS_EVENTOS" | translate}}
       </a>
     </li>
 
     <li>
       <a routerLink="/likes" class="nav-link link-dark">
         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-heart"></i></span>
-        Me gustan
+        {{"MENU.ME_GUSTAN" | translate}}
       </a>
     </li>
 
@@ -49,13 +49,13 @@
 
     <li *ngIf="isAdmin">
       <a routerLink="admin/listEvents" class="nav-link link-dark">
-        Listado de Eventos
+        {{"MENU.LISTA_EVENTOS" | translate}}
       </a>
     </li>
 
     <li *ngIf="isAdmin">
       <a routerLink="admin/listUsers" class="nav-link link-dark">
-        Listado de Usuarios
+        {{"MENU.LISTA_USU" | translate}}
       </a>
     </li>
 

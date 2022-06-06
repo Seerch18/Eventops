@@ -8,9 +8,26 @@ import { MaterialModule } from './components/material/material.module';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Import the injector module and the HTTP client module from Angular
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
+
+// Translate
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateService,
+} from '@ngx-translate/core';
+
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// Pipes
+import { FechaPipe } from './pipes/fecha.pipe';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,10 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
 import { MenuBusquedaRapidaComponent } from './components/menus/menu-busqueda-rapida/menu-busqueda-rapida.component';
 import { CrearEventoComponent } from './components/events/crear-evento/crear-evento.component';
-import { FechaPipe } from './pipes/fecha.pipe';
 import { MenuBusquedaComponent } from './components/menus/menu-busqueda/menu-busqueda.component';
 import { ProximosEventosComponent } from './components/events/proximos-eventos/proximos-eventos.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LikeEventosComponent } from './components/events/like-eventos/like-eventos.component';
 import { ListarEventosTablaComponent } from './components/events/listar-eventos-tabla/listar-eventos-tabla.component';
 import { ModalEventoComponent } from './components/events/modal-evento/modal-evento.component';
@@ -36,6 +51,10 @@ import { Page401Component } from './components/errors/page401/page401.component'
 import { Page403Component } from './components/errors/page403/page403.component';
 import { ListaEventosComponent } from './components/events/lista-eventos/lista-eventos.component';
 import { DeleteComponent } from './components/dialog/delete/delete.component';
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -78,6 +97,14 @@ import { DeleteComponent } from './components/dialog/delete/delete.component';
     MaterialModule,
     AuthModule,
     CoreModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

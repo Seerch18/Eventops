@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Eliminar Registro</h1>
+<h1 mat-dialog-title>{{"DIALOG.TITLE" | translate}}</h1>
 <div mat-dialog-content>
-    ¿Estás seguro de eliminar el registro?
+    {{"DIALOG.CONTENT" | translate}}
 </div>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close cdkFocusInitial>No</button>
-    <button mat-button mat-dialog-close (click)="borrar()">Ok</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>{{"DIALOG.NO" | translate}}</button>
+    <button mat-button mat-dialog-close (click)="borrar()">{{"DIALOG.SI" | translate}}</button>
 </div>

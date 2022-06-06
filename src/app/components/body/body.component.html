@@ -6,12 +6,12 @@
                     <app-googlemaps [markers]="markers"></app-googlemaps>
                 </div>
                 <div class="col-12" *ngIf="filteredEvents.length != null">
-                    <h3 class="my-4 p-3 bg-light">Resultado de la búsqueda: </h3>
+                    <h3 class="my-4 p-3 bg-light">{{"BODY.RESULTADO" | translate}}</h3>
                     <!-- <app-listar-eventos-tabla [aEventos]="filteredEvents"></app-listar-eventos-tabla> -->
                     <app-lista-eventos [aEventos]="filteredEvents"></app-lista-eventos>
                 </div>
                 <div class="col-12">
-                    <h3 class="my-4 p-3 bg-light">Próximos Eventos</h3>
+                    <h3 class="my-4 p-3 bg-light">{{"BODY.PROX" | translate}}</h3>
                     <app-proximos-eventos></app-proximos-eventos>
                 </div>
             </div>

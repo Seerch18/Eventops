@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   public isAuth: boolean;
   public avatar: string;
-  constructor() {
+  public langs: string[] = [];
+  public selected = 'English';
+
+  constructor(private translateService: TranslateService) {
+    this.langs = this.translateService.getLangs();
     this.isAuth = false;
     this.avatar = '../../../assets/IMG/avatar.jpg';
   }
@@ -21,5 +26,9 @@ export class HeaderComponent implements OnInit {
         this.avatar = user.avatar;
       }
     }
+  }
+
+  changeLang(event: any) {
+    this.translateService.use(event);
   }
 }
