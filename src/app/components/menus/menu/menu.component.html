@@ -26,7 +26,7 @@
         Crear Evento
       </a>
     </li>
-    
+
     <li>
       <a routerLink="listEvents" class="nav-link link-dark">
         <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-eye"></i></span>
@@ -41,15 +41,21 @@
       </a>
     </li>
 
-    <li>
+    <!-- <li>
       <a routerLink="#" class="nav-link link-dark">
         Más Eventos
+      </a>
+    </li> -->
+
+    <li *ngIf="isAdmin">
+      <a routerLink="admin/listEvents" class="nav-link link-dark">
+        Listado de Eventos
       </a>
     </li>
 
     <li *ngIf="isAdmin">
-      <a routerLink="admin/listEvents" class="nav-link link-dark">
-        Todos los eventos
+      <a routerLink="admin/listUsers" class="nav-link link-dark">
+        Listado de Usuarios
       </a>
     </li>
 

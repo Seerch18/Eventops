@@ -15,19 +15,26 @@
     <a class="navbar-brand" routerLink="#">
         <img src="../../../assets/IMG/logo.png" alt="" width="150" height="100">
     </a>
+
     <ul class="navbar-nav flex-row me-2">
-        <li class="nav-item" *ngIf="(auth.isAuthenticated$ | async) == false">
-            <a class="nav-link">
-                <app-loginbutton></app-loginbutton>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/login" *ngIf="!isAuth">
+                <button class="btn btn-primary">Sing in</button>
             </a>
         </li>
 
-        <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/register" *ngIf="!isAuth">
+                <button class="btn btn-primary">Sign up</button>
+            </a>
+        </li>
+
+        <!-- usuario -->
+        <li class="nav-item" *ngIf="isAuth">
             <div class="dropdown">
-                <a href="#" *ngIf="auth.user$ | async as user"
-                    class="d-flex align-items-center link-dark text-decoration-none nav-link" id="dropdownUser2"
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none nav-link" id="dropdownUser2"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{user.picture}}" alt="" width="45" height="45" class="rounded-circle me-2">
+                    <img src="{{avatar}}" alt="" width="45" height="45" class="rounded-circle me-2">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end ext-small shadow" aria-labelledby="dropdownUser2">
                     <li class="nav-item">
@@ -50,7 +57,9 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <app-logoutbutton class="dropdown-item"></app-logoutbutton>
+                        <a class="nav-link" routerLink="#" *ngIf="isAuth">
+                            <app-logout></app-logout>
+                        </a>
                     </li>
                 </ul>
             </div>

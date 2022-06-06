@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
 import { MatButtonModule } from '@angular/material/button';
+import { DeleteComponent } from '../../dialog/delete/delete.component';
 
 @Component({
   selector: 'app-listar-eventos-card',
@@ -28,12 +29,13 @@ export class ListarEventosCardComponent implements OnInit {
   }
 
   eliminarEvento(id: any) {
-    this.eventoService.deleteEvent(id).subscribe((resp) => {
-      if (!resp['delete']) {
-        alert('Error al eliminar el registro');
-      }
-      this.cargarEventos();
-    });
+    this.openDeleteDialog('0ms', '0ms', 'evento', { id: id });
+    // this.eventoService.deleteEvent(id).subscribe((resp) => {
+    //   if (!resp['delete']) {
+    //     alert('Error al eliminar el registro');
+    //   }
+    //   this.cargarEventos();
+    // });
   }
 
   cargarEventos() {
@@ -62,5 +64,25 @@ export class ListarEventosCardComponent implements OnInit {
         this.aEventos = resp;
       });
     });
+  }
+
+  openDeleteDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    element: any,
+    object: any
+  ): void {
+    this.dialog
+      .open(DeleteComponent, {
+        width: '250px',
+        data: {
+          element: element,
+          object: object,
+        },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.cargarEventos();
+      });
   }
 }

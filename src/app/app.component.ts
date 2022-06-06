@@ -1,5 +1,5 @@
+import { NgLocaleLocalization } from '@angular/common';
 import { Component } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,18 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'proyecto';
+  public isAuth: boolean;
   public menu_col: string = 'col-2';
-  public body_col: string = 'col-10';
+  public body_col: string = 'col-12';
 
-  constructor(public auth: AuthService) {}
+  constructor() {
+    this.isAuth = false;
+  }
 
   ngOnInit(): void {
-    this.auth.isAuthenticated$.subscribe((resp) => {
-      if(resp){
-        this.body_col = 'col-10';
-      }else{
-        this.body_col = 'col-12';
-      }
-    })
+    if (localStorage.getItem('user')) {
+      this.isAuth = true;
+      this.body_col = 'col-10';
+    }
   }
 }

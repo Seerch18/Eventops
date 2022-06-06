@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../services/events/evento.service';
-// import { AuthService } from 'src/app/auth/service/auth.service';
 
 @Component({
   selector: 'app-body',
@@ -24,13 +23,10 @@ export class BodyComponent implements OnInit {
     } else {
       this.filteredEvents = [];
     }
+    this.markers = [];
     if (this.filteredEvents.length != 0) {
-      this.markers = [];
+      this.markers = this.filteredEvents;
       console.log(this.markers);
-      this.filteredEvents.forEach((element) => {
-        this.markers.push(element.ubicacion);
-      });
-      // console.log(this.markers);
     }
   }
 }

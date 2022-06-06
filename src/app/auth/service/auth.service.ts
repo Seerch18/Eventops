@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { IApiUserAuthenticated } from '../../models/iapi-user-authenticated';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public currentUser: BehaviorSubject<IApiUserAuthenticated>;
-  public nameUserLS: string = 'currentUserDesigncode';
+  public currentUser: BehaviorSubject<any>;
+  public nameUserLS: string = 'user';
 
   url = 'http://localhost/apirestangular/api/auth';
 
@@ -19,25 +18,30 @@ export class AuthService {
     );
   }
 
-  get getUser(): IApiUserAuthenticated {
+  get getUser(): any {
     return this.currentUser.value;
   }
 
-  // email & password
-  login(datos: any): Observable<any> {
+  register(datos: any): Observable<any> {
     return this.httpClient.post(
-      `${this.url}/login.php`,
+      `${this.url}/register.php`,
       JSON.stringify(datos)
     );
   }
 
-  logout(){
+  // email & password
+  login(datos: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/login.php`, JSON.stringify(datos));
+  }
+
+  logout() {
     localStorage.removeItem(this.nameUserLS);
     this.currentUser.next(null!);
     this._router.navigateByUrl('/');
+    window.location.reload();
   }
 
-  setUserToLocalStorage(user: IApiUserAuthenticated) {
+  setUserToLocalStorage(user: any) {
     localStorage.setItem(this.nameUserLS, JSON.stringify(user));
     this.currentUser.next(user);
   }

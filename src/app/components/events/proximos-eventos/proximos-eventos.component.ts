@@ -4,7 +4,6 @@ import { EventoService } from '../../../services/events/evento.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
-import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-proximos-eventos',
@@ -24,7 +23,7 @@ export class ProximosEventosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private eventoService: EventoService, private auth: AuthService) {
+  constructor(private eventoService: EventoService) {
     this.proxEvents = [];
   }
 
@@ -49,9 +48,5 @@ export class ProximosEventosComponent implements OnInit {
     this.eventoService
       .createLike(eventoId)
       .subscribe((resp) => console.log(resp));
-  }
-
-  verEvento(eventoId: number) {
-    // ventana modal que muestre el evento
   }
 }

@@ -4,9 +4,10 @@ import { EventoService } from '../../../services/events/evento.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
-import { AuthService } from '../../../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
+import { AdminService } from '../../../services/admin/admin.service';
+import { DeleteComponent } from '../../dialog/delete/delete.component';
 
 @Component({
   selector: 'app-listar-eventos-tabla',
@@ -20,19 +21,37 @@ export class ListarEventosTablaComponent implements OnInit {
     'nombre',
     'descripcion',
     'fechaInicio',
-    'fechaFin',
     'acciones',
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  private user: any;
+  public isAdmin: boolean;
 
   constructor(
     private eventoService: EventoService,
-    private auth: AuthService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private adminService: AdminService
+  ) {
+    this.isAdmin = false;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getLSUser();
+    if (this.user) {
+      if (this.user.rol == 'ADMIN') {
+        console.log('pasa');
+        this.isAdmin = true;
+      }
+    }
+  }
+
+  getLSUser() {
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user')!);
+      // console.log(this.user);
+    }
+  }
 
   pagAndSort() {
     this.dataSource.paginator = this.paginator;
@@ -55,5 +74,52 @@ export class ListarEventosTablaComponent implements OnInit {
         });
       }
     });
+  }
+
+  eliminarEvento(eventoId: number) {
+    if (this.user.rol == 'ADMIN') {
+      this.openDeleteDialog('', '', 'admin_evento', { id: eventoId });
+    } else {
+      this.openDeleteDialog('', '', 'evento', { id: eventoId });
+    }
+  }
+
+  cargarEventos() {
+    this.eventoService
+      .listEvents()
+      .subscribe((eventos) => (this.aEventos = eventos));
+  }
+
+  likeOrDeleteLike(eventoId: number) {
+    this.eventoService.getLikeEvents(eventoId).subscribe((resp) => {
+      console.log(resp.length);
+      if (resp.length == 0) {
+        this.like(eventoId);
+      } else {
+        this.eventoService
+          .deleteLike(eventoId)
+          .subscribe((resp) => console.log(resp));
+      }
+    });
+  }
+
+  openDeleteDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    element: any,
+    object: any
+  ): void {
+    this.dialog
+      .open(DeleteComponent, {
+        width: '250px',
+        data: {
+          element: element,
+          object: object,
+        },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.cargarEventos();
+      });
   }
 }

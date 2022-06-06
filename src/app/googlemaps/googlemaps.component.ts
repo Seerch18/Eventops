@@ -8,19 +8,22 @@ import {
   EventEmitter,
   Renderer2,
   ViewChild,
+  OnChanges,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { GooglemapsService } from './service/googlemaps.service';
-import { EventoService } from '../services/events/evento.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { ModalEventoComponent } from '../components/events/modal-evento/modal-evento.component';
+import { EventoService } from '../services/events/evento.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-googlemaps',
   templateUrl: './googlemaps.component.html',
   styleUrls: ['./googlemaps.component.css'],
 })
-export class GooglemapsComponent implements OnInit {
+export class GooglemapsComponent implements OnInit, OnChanges {
   @Input() markers: any;
   @Input() aMarkers: google.maps.Marker[] = [];
   @Input() currentPosition: any; // posición actual
@@ -51,7 +54,9 @@ export class GooglemapsComponent implements OnInit {
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: any,
     private googlemapsService: GooglemapsService,
-    private _router: Router
+    private _router: Router,
+    private eventoService: EventoService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +64,13 @@ export class GooglemapsComponent implements OnInit {
       this.addCurrentPosition();
     }
     this.init();
+  }
+
+  ngOnChanges(changes: any) {
+    if (changes.markers) {
+      this.deleteMarkers();
+      this.addFilteredEventsMap(this.markers, this.map);
+    }
   }
 
   async init() {
@@ -94,51 +106,24 @@ export class GooglemapsComponent implements OnInit {
 
     this.infowindow = new google.maps.InfoWindow();
 
-    this.clickHandleEvent(this.map); // añade un evento click al mapa
-    this.deleteMarkers();
+    this.clickHandleEvent(); // añade un evento click al mapa
 
-    if (this.label.titulo.length) {
-      // esta condición no es necesaria
-      this.addMarker(position); // establece el marcador en el mapa
-      this.setInfoWindow(this.marker, this.label.titulo, this.label.subtitulo); // crea una venta en lo alto del marcador
-    }
+    this.addMarker(position); // establece el marcador en el mapa
+    this.setInfoWindow(this.marker, this.label.titulo, this.label.subtitulo); // crea una venta en lo alto del marcador
+
     this.currentLocation(); // marca en el mapa la ubicación en la que se encuentra el usuario (va mal)
   }
 
-  clickHandleEvent(map: any) {
+  clickHandleEvent() {
     this.map.addListener('click', (event: any) => {
-      // añadir eventos filtrados al mapa
-      // --------------------------------------
-      if (this.markers) {
-        console.log(this.markers);
-        this.markers.forEach((element: any) => {
-          let latLng = element.split(';');
-          const marker = new google.maps.Marker({
-            position: {
-              lat: parseFloat(latLng[0]),
-              lng: parseFloat(latLng[1]),
-            },
-            map,
-          });
-          this.aMarkers.push(marker);
-        });
-      }
-      // -------------------------------------
-
       const position = {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       };
       // añade la nueva posición al input de ubicación
       this.addNewPosition(position); // (/saveEvent)
-      if (this.label.titulo.length) {
-        this.addMarker(position);
-        this.setInfoWindow(
-          this.marker,
-          this.label.titulo,
-          this.label.subtitulo
-        );
-      }
+      this.addMarker(position);
+      this.setInfoWindow(this.marker, this.label.titulo, this.label.subtitulo);
     });
   }
 
@@ -155,14 +140,14 @@ export class GooglemapsComponent implements OnInit {
     let title = this.document.createElement('p');
     title.textContent = titulo;
     let subtitle = this.document.createElement('p');
-    subtitle.textContent = subtitulo;
+    // subtitle.textContent = subtitulo;
     let content = this.document.createElement('div');
     content.id = 'bodyContent';
     content.appendChild(subtitle);
     contenedor.appendChild(title);
     contenedor.appendChild(content);
 
-    if (this._router.url != '/saveEvent') {
+    if (!this._router.url.includes('/saveEvent')) {
       let botonCrear = this.document.createElement('button');
       botonCrear.textContent = 'Crear Evento';
       botonCrear.classList.add('btn-sm');
@@ -173,9 +158,12 @@ export class GooglemapsComponent implements OnInit {
       });
       content.appendChild(botonCrear);
     }
-
     this.infowindow.setContent(contenedor);
     this.infowindow.open(this.map, marker);
+    marker.addListener('click', () => {
+      this.infowindow.close();
+      this.infowindow.open(this.map, marker);
+    });
   }
 
   // -----------------------------------------------------------------------
@@ -243,20 +231,60 @@ export class GooglemapsComponent implements OnInit {
       this.position = this.currentPosition;
   }
 
-  // addFilteredEventsMap(markers: any, map: any) {
-  //   if (markers) {
-  //     markers.forEach((element: any) => {
-  //       let latLng = element.split(';');
-  //       new google.maps.Marker({
-  //         position: {
-  //           lat: parseFloat(latLng[0]),
-  //           lng: parseFloat(latLng[1]),
-  //         },
-  //         map,
-  //       });
-  //     });
-  //   }
-  // }
+  addFilteredEventsMap(markers: any, map: any) {
+    if (markers) {
+      markers.forEach((element: any) => {
+        let infowindow = new google.maps.InfoWindow();
+
+        let latLng = element.ubicacion.split(';');
+        const marker = new google.maps.Marker({
+          position: {
+            lat: parseFloat(latLng[0]),
+            lng: parseFloat(latLng[1]),
+          },
+          map,
+        });
+        let contenido = this.infoContent(
+          element.nombre,
+          element.fechaInicio,
+          element.id
+        );
+        marker.addListener('click', () => {
+          infowindow.close();
+          infowindow.setContent(contenido);
+          infowindow.open(this.map, marker);
+        });
+        this.aMarkers.push(marker);
+      });
+    }
+  }
+
+  infoContent(nombre: any, fechaInicio: any, id: any) {
+    let contenedor = this.document.createElement('div');
+    contenedor.id = 'contentInsideMap';
+    contenedor.classList.add('d-flex');
+    contenedor.classList.add('flex-column');
+    contenedor.classList.add('justify-content-center');
+    let title = this.document.createElement('p');
+    title.textContent = nombre;
+    let subtitle = this.document.createElement('p');
+    subtitle.textContent = fechaInicio;
+    let content = this.document.createElement('div');
+    content.id = 'bodyContent';
+    content.appendChild(subtitle);
+    contenedor.appendChild(title);
+    contenedor.appendChild(content);
+    let boton = this.document.createElement('button');
+    boton.textContent = 'Ver Evento';
+    boton.classList.add('btn-sm');
+    boton.classList.add('btn-primary');
+    boton.classList.add('m-2');
+    boton.addEventListener('click', () => {
+      this.openDialog(id);
+    });
+    content.appendChild(boton);
+    return contenedor;
+  }
 
   // Sets the map on all markers in the array.
   setMapOnAll(map: google.maps.Map | null) {
@@ -266,10 +294,19 @@ export class GooglemapsComponent implements OnInit {
   }
 
   deleteMarkers(): void {
-    this.map.addListener('dblclick', (event: any) => {
-      console.log("entra");
-      this.setMapOnAll(null);
-      this.aMarkers = [];
+    this.setMapOnAll(null);
+    this.aMarkers = [];
+  }
+
+  openDialog(eventoId: number) {
+    this.eventoService.readEvent(eventoId).subscribe((resp) => {
+      if (resp) {
+        this.dialog.open(ModalEventoComponent, {
+          height: '600px',
+          width: '800px',
+          data: resp,
+        });
+      }
     });
   }
 }

@@ -1,38 +1,26 @@
-<form [formGroup]="frmFiltro" (submit)="filtrarEventos()">
+<!-- <form [formGroup]="frmFiltro" (submit)="filtrarEventos()">
     <ul class="nav flex-column">
 
-        <!-- title -->
         <li class="nav-item text-center mb-2">
             <h3 class="p-2 m-2 border-bottom">Búsqueda / Filtros</h3>
         </li>
 
-        <!-- filtrar por ciudad -->
         <li class="nav-item mb-2">
-            <!-- <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseCity" aria-expanded="false"
-                aria-controls="collapseCity">Ciudad</button> -->
-            <!-- <div class="collapse mt-2" id="collapseCity"> -->
             <select class="form-select rounded-pill border-success selectP" formControlName="ciudad">
                 <option selected value="">Ciudad</option>
                 <option disabled value="">- - - - - - -</option>
                 <option *ngFor="let ele of cities;" value="{{ele.id}}">{{ele.nombre}}</option>
             </select>
-            <!-- </div> -->
         </li>
 
-        <!-- filtrar por categorías -->
         <li class="nav-item mb-2">
             <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
                 data-bs-toggle="collapse" data-bs-target="#collapseCateg" aria-expanded="false"
                 aria-controls="collapseCateg">Categorías</button>
             <div class="collapse mt-2" id="collapseCateg">
                 <div class="card card-body">
-                    <!-- <select class="form-select" formControlName="etiqueta">
-                        <option selected value="">Categorías</option>
-                        <option disabled value="">- - - - - - - - - -</option>
-                        <option *ngFor="let ele of tags;" value="{{ele.id}}">{{ele.nombre}}</option>
-                    </select> -->
-                    <select class="form-select" multiple aria-label="multiple select example" formControlName="etiquetas">
+                    <select class="form-select" multiple aria-label="multiple select example"
+                        formControlName="etiquetas">
                         <option selected value="">Categorías</option>
                         <option disabled value="">- - - - - - - - - -</option>
                         <option *ngFor="let ele of tags;" value="{{ele.id}}">{{ele.nombre}}</option>
@@ -41,7 +29,6 @@
             </div>
         </li>
 
-        <!-- filatrar por fecha -->
         <li class="nav-item mb-2">
             <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
                 data-bs-toggle="collapse" data-bs-target="#collapseDate" aria-expanded="false"
@@ -51,14 +38,12 @@
                 <div class="card card-body">
                     <div class="row mb-4">
                         <div class="col-12">
-                            <!-- Fecha Inicio input -->
                             <div class="form-outline">
                                 <input type="date" id="dateStart" class="form-control" formControlName="fechaInicio" />
                                 <label class="form-label" for="dateStart">Fecha Inicio</label>
                             </div>
                         </div>
                         <div class="col-12">
-                            <!-- Fecha Fin input -->
                             <div class="form-outline">
                                 <input type="date" id="dateEnd" class="form-control" formControlName="fechaFin" />
                                 <label class="form-label" for="dateEnd">Fecha Fin</label>
@@ -69,7 +54,6 @@
             </div>
         </li>
 
-        <!-- filtrar por hora -->
         <li class="nav-item mb-2">
             <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
                 data-bs-toggle="collapse" data-bs-target="#collapseTime" aria-expanded="false"
@@ -78,14 +62,12 @@
                 <div class="card card-body">
                     <div class="row mb-4">
                         <div class="col-12">
-                            <!-- Hora Inicio input -->
                             <div class="form-outline">
                                 <input type="time" id="timeStart" class="form-control" formControlName="horaInicio" />
                                 <label class="form-label" for="timeStart">Hora Inicio</label>
                             </div>
                         </div>
                         <div class="col-12">
-                            <!-- Hora Fin input -->
                             <div class="form-outline">
                                 <input type="time" id="timeEnd" class="form-control" formControlName="horaFin" />
                                 <label class="form-label" for="timeEnd">Hora Fin</label>
@@ -101,4 +83,75 @@
             </button>
         </li>
     </ul>
+</form> -->
+
+<h3>Filtros Búsqueda</h3>
+<mat-divider></mat-divider>
+
+<form [formGroup]="frmFiltro" (submit)="filtrarEventos()" class="mt-2">
+
+    <mat-accordion class="example-headers-align">
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Ciudad
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-select placeholder="Select an option" formControlName="ciudad">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let ele of cities" [value]="ele.id">
+                    {{ele.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Categorías
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-select multiple formControlName="etiquetas" placeholder="Etiquetas">
+                <mat-option *ngFor="let ele of tags" [value]="ele.id">{{ele.nombre}}
+                </mat-option>
+            </mat-select>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Fecha Inicio / Fin
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <label for="dateStart">Inicio</label>
+            <input type="date" id="dateStart" class="form-control mb-2" formControlName="fechaInicio" />
+            <label for="dateEnd">Fin</label>
+            <input type="date" id="dateEnd" class="form-control" formControlName="fechaFin" />
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Hora Inicio / Fin
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <label for="timeStart">Inicio</label>
+            <input type="time" id="timeStart" class="form-control mb-2" formControlName="horaInicio" />
+            <label for="timeEnd">Fin</label>
+            <input type="time" id="timeEnd" class="form-control" formControlName="horaFin" />
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+    <button mat-icon-button color="primary" matTooltip="Buscar" class="w-100 rounded-pill text-center border mt-3">
+        Buscar <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+    <!-- <button class="btn btn-outline-success w-100 rounded-pill text-center" type="submit">
+        Buscar <i class="fa-solid fa-magnifying-glass"></i>
+    </button> -->
+
 </form>

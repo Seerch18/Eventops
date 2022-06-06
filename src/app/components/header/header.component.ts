@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +6,20 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public auth: AuthService) {}
+  public isAuth: boolean;
+  public avatar: string;
+  constructor() {
+    this.isAuth = false;
+    this.avatar = '../../../assets/IMG/avatar.jpg';
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('user')) {
+      this.isAuth = true;
+      let user = JSON.parse(localStorage.getItem('user')!);
+      if (user.avatar) {
+        this.avatar = user.avatar;
+      }
+    }
+  }
 }

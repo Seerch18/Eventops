@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProximosEventosComponent } from './proximos-eventos.component';
+import { Page401Component } from './page401.component';
 
-describe('ProximosEventosComponent', () => {
-  let component: ProximosEventosComponent;
-  let fixture: ComponentFixture<ProximosEventosComponent>;
+describe('Page401Component', () => {
+  let component: Page401Component;
+  let fixture: ComponentFixture<Page401Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProximosEventosComponent ]
+      declarations: [ Page401Component ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProximosEventosComponent);
+    fixture = TestBed.createComponent(Page401Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

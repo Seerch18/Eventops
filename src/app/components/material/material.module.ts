@@ -14,6 +14,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { ChipsComponent } from './chips/chips.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [ChipsComponent],
@@ -32,6 +36,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatIconModule,
     MatFormFieldModule,
     MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatExpansionModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatSliderModule,
@@ -48,6 +57,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatFormFieldModule,
     MatAutocompleteModule,
     ChipsComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatExpansionModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}

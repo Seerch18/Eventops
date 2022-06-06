@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../../../services/events/evento.service';
 import { Evento } from '../../../models/Evento';
-import { AuthService } from 'src/app/auth/service/auth.service';
 
 @Component({
   selector: 'app-mis-eventos',
@@ -11,7 +10,7 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 export class MisEventosComponent implements OnInit {
   listEvents: Array<Evento>;
 
-  constructor(private eventoService: EventoService, public usuario:AuthService) {
+  constructor(private eventoService: EventoService) {
     this.listEvents = [];
   }
 

@@ -1,7 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/service/auth.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -43,7 +42,7 @@ export class EventoService {
   }
 
   editEvent(event: Event, id: any): Observable<any> {
-    return this.http.post(
+    return this.http.put(
       `${this.url}/editEvent.php?eventoId=${id}&id=${this.userId}`,
       JSON.stringify(event)
     );
@@ -72,9 +71,10 @@ export class EventoService {
     );
   }
 
-  getLikeEvents(): Observable<any> {
+  getLikeEvents(eventoId: number = 0): Observable<any> {
+    console.log(eventoId + ' ' + this.userId);
     return this.http.get(
-      `${this.urlLikes}/readLike.php?usuarioId=${this.userId}`
+      `${this.urlLikes}/readLike.php?usuarioId=${this.userId}&eventoId=${eventoId}`
     );
   }
 

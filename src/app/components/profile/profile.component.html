@@ -1,32 +1,10 @@
-<!-- <div>
-    <h1>Profile</h1>
-    <p>
-        You use will use an ID Token to get the profile information of a logged-in user
-        <br>
-        <strong>This route should be protected</strong>
-    </p>
-</div>
-<div *ngIf="auth.user$ | async as user">
-    <div class="row align-items-center profile-header">
-        <div class="col-md-2 mb-3">
-            <img [src]="user.picture" alt="User's profile picture" class="rounded-circle img-fluid profile-picture" />
-        </div>
-        <div class="col-md text-center text-md-left">
-            <h2>{{ user.name }}</h2>
-            <p class="lead text-muted">{{ user.email }}</p>
-        </div>
-    </div>
-    <div class="row" *ngIf="profileJson">
-        <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
-    </div>
-</div> -->
-<div class="container-xl px-4 mt-4" *ngIf="auth.user$ | async as user">
+<div class="container-xl px-4 mt-4">
     <!-- Account page navigation-->
     <nav class="nav nav-borders">
-        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
-        <!-- <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a> -->
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
-        <!-- <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a> -->
+        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
+            target="__blank">Profile</a>
+        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
+            target="__blank">Security</a>
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -36,11 +14,7 @@
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="{{user.picture}}" alt="">
-                    <!-- Profile picture help block-->
-                    <!-- <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div> -->
-                    <!-- Profile picture upload button-->
-                    <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
+                    <img class="img-account-profile rounded-circle mb-2" src="../../../assets/IMG/avatar.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -49,64 +23,47 @@
             <div class="card mb-4">
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
-                    <form>
-                        <!-- Form Group (username)-->
+                    <form [formGroup]="frmUsuario" (submit)="editarUsuario()">
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="{{user.nickname}}">
+
                         </div>
                         <!-- Form Row-->
                         <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
+                            <!-- Form Group (nick)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">Name</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="{{user.given_name}}">
+                                <label class="small mb-1" for="nick">Nick</label>
+                                <input class="form-control" id="nick" type="text" placeholder="Enter your username"
+                                    formControlName="nick" value="{{user.nick}}">
                             </div>
-                            <!-- Form Group (last name)-->
+                            <!-- Form Group (name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Surname</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="{{user.family_name}}">
+                                <label class="small mb-1" for="Name">Name</label>
+                                <input class="form-control" id="name" type="text" placeholder="Enter your first name"
+                                    formControlName="name" value="{{user.nombre}}">
                             </div>
                         </div>
-                        <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
-                            <!-- <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
-                            </div> -->
-                            <!-- Form Group (location)-->
+
+                        <!-- <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="{{user.locale}}">
-                            </div>
-                        </div>
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="{{user.email}}">
-                        </div>
-                        <!-- Form Row-->
-                        <!-- <div class="row gx-3 mb-3">
-                            Form Group (phone number)
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                            </div>
-                            Form Group (birthday)
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                                <input class="form-control" id="inputLocation" type="text"
+                                    placeholder="Enter your location" value="">
                             </div>
                         </div> -->
-                        <!-- Save changes button-->
-                        <!-- <button class="btn btn-primary" type="button">Save changes</button> -->
+
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="email">Email address</label>
+                            <input class="form-control" id="email" type="email" placeholder="Enter your email address"
+                                formControlName="email" value="{{user.email}}">
+                        </div>
+                        <!-- Submit button -->
+                        <button type="submit" id="editar" [disabled]="frmUsuario.invalid"
+                            class="btn btn-primary mb-4">Guardar
+                            Cambios</button>
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="row" *ngIf="profileJson">
-            <pre class="col-12 text-light bg-dark p-4">{{ profileJson }}</pre>
         </div>
     </div>
 </div>

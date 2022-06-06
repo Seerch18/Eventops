@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChipsComponent } from './chips.component';
+import { Page403Component } from './page403.component';
 
-describe('ChipsComponent', () => {
-  let component: ChipsComponent;
-  let fixture: ComponentFixture<ChipsComponent>;
+describe('Page403Component', () => {
+  let component: Page403Component;
+  let fixture: ComponentFixture<Page403Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChipsComponent ]
+      declarations: [ Page403Component ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChipsComponent);
+    fixture = TestBed.createComponent(Page403Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

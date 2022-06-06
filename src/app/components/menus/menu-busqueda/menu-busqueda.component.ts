@@ -8,7 +8,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '@auth0/auth0-angular';
 import { CiudadService } from '../../../services/ciudad/ciudad.service';
 import { FiltrosService } from '../../../services/filtros/filtros.service';
 import { EtiquetaService } from '../../../services/etiquetas/etiqueta.service';
@@ -28,7 +27,6 @@ export class MenuBusquedaComponent implements OnInit {
     private frmBuilder: FormBuilder,
     private _router: Router,
     private params: ActivatedRoute,
-    private auth: AuthService,
     private ciudadService: CiudadService,
     private filtroService: FiltrosService,
     private etiquetaService: EtiquetaService
@@ -51,10 +49,11 @@ export class MenuBusquedaComponent implements OnInit {
   }
 
   filtrarEventos() {
-    console.log(this.frmFiltro.value);
+    // console.log(this.frmFiltro.value);
     this.filtroService
       .getFilteredEvents(this.frmFiltro.value)
       .subscribe((resp) => {
+        console.log(resp);
         this.eventos.emit(resp);
       });
   }

@@ -1,0 +1,33 @@
+.user_card {
+  height: 400px;
+  width: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+.form_container {
+  /* margin-top: 100px; */
+}
+
+.login_btn {
+  width: 100%;
+  background: #c0392b;
+  color: white !important;
+}
+
+.login_btn:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+}
+
+.login_container {
+  padding: 0 2rem;
+}

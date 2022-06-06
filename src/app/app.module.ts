@@ -5,22 +5,18 @@ import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { GooglemapsModule } from './googlemaps/googlemaps.module';
 import { MaterialModule } from './components/material/material.module';
+import { AuthModule } from './auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
-// Import the module from the SDK
-import { AuthModule } from '@auth0/auth0-angular';
 // Import the injector module and the HTTP client module from Angular
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// Import the HTTP interceptor from the Auth0 Angular SDK
-import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/body.component';
 import { MenuComponent } from './components/menus/menu/menu.component';
-import { LoginbuttonComponent } from './components/loginbutton/loginbutton.component';
-import { LogoutbuttonComponent } from './components/logoutbutton/logoutbutton.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
 import { MenuBusquedaRapidaComponent } from './components/menus/menu-busqueda-rapida/menu-busqueda-rapida.component';
@@ -34,6 +30,12 @@ import { ListarEventosTablaComponent } from './components/events/listar-eventos-
 import { ModalEventoComponent } from './components/events/modal-evento/modal-evento.component';
 import { ListarEventosCardComponent } from './components/events/listar-eventos-card/listar-eventos-card.component';
 import { ListarEventosComponent } from './components/admin/listar-eventos/listar-eventos.component';
+import { ListarUsuariosComponent } from './components/admin/listar-usuarios/listar-usuarios.component';
+import { Page404Component } from './components/errors/page404/page404.component';
+import { Page401Component } from './components/errors/page401/page401.component';
+import { Page403Component } from './components/errors/page403/page403.component';
+import { ListaEventosComponent } from './components/events/lista-eventos/lista-eventos.component';
+import { DeleteComponent } from './components/dialog/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +44,6 @@ import { ListarEventosComponent } from './components/admin/listar-eventos/listar
     FooterComponent,
     BodyComponent,
     MenuComponent,
-    LoginbuttonComponent,
-    LogoutbuttonComponent,
     ProfileComponent,
     MisEventosComponent,
     MenuBusquedaRapidaComponent,
@@ -56,6 +56,12 @@ import { ListarEventosComponent } from './components/admin/listar-eventos/listar
     ModalEventoComponent,
     ListarEventosCardComponent,
     ListarEventosComponent,
+    ListarUsuariosComponent,
+    Page404Component,
+    Page401Component,
+    Page403Component,
+    ListaEventosComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,34 +69,6 @@ import { ListarEventosComponent } from './components/admin/listar-eventos/listar
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    AuthModule.forRoot({
-      // The domain and clientId were configured in the previous chapter
-      domain: 'dev-dyft8jys.us.auth0.com',
-      clientId: 'kuq2N6i9avOgbN2zFhloF7HAacDxxu96',
-
-      // Request this audience at user authentication time
-      // audience: 'https://dev-dyft8jys.us.auth0.com/api/v2/',
-
-      // // Request this scope at user authentication time
-      // scope: 'read:current_user',
-
-      // // Specify configuration for the interceptor
-      // httpInterceptor: {
-      //   allowedList: [
-      //     {
-      //       // Match any request that starts 'https://dev-dyft8jys.us.auth0.com/api/v2/' (note the asterisk)
-      //       uri: 'https://dev-dyft8jys.us.auth0.com/api/v2/*',
-      //       tokenOptions: {
-      //         // The attached token should target this audience
-      //         audience: 'https://dev-dyft8jys.us.auth0.com/api/v2/',
-
-      //         // The attached token should have these scopes
-      //         scope: 'read:current_user',
-      //       },
-      //     },
-      //   ],
-      // },
-    }),
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDzjKgXo682mL_NZCN0wqb4qhrQlSMrkNg',
@@ -98,10 +76,10 @@ import { ListarEventosComponent } from './components/admin/listar-eventos/listar
     GooglemapsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AuthModule,
+    CoreModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
