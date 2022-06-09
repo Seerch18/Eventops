@@ -42,6 +42,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  /**
+   * Registra al usuario
+   */
   async register() {
     if (this.frmUsuario.valid) {
       this.authService.register(this.frmUsuario.value).subscribe((resp) => {
@@ -59,12 +62,19 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  /**
+   * Comprueba si el usuario existe en la base de datos
+   * @param usuario
+   */
   checkUserLogin(usuario: any) {
     this.authService.setUserToLocalStorage(usuario);
     this._router.navigateByUrl('/');
     window.location.reload();
   }
 
+  /**
+   * Rellena el formulario con los datos introducidos por el usuario
+   */
   userSignIn() {
     const formulario = {
       nick: this.frmUsuario.value['nick'],

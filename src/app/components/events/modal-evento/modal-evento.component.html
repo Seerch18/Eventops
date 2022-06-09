@@ -1,56 +1,57 @@
-<div class="d-flex bd-highlight">
-    <div class="p-2 w-100 bd-highlight">
-        <h1 mat-dialog-title>{{data.nombre}}</h1>
-    </div>
-    <div class="flex-shrink-1 bd-highlight p-0 m-0">
-        <div mat-dialog-actions class="p-0 m-0">
-            <button mat-button mat-dialog-close class="p-0 m-0 btn"><i class="fa-solid fa-x"></i></button>
+<div class="container w-100 h-100 p-4 m-0 rounded" style="background-color: #e3f2fd;">
+    <div class="row mb-3">
+        <div class="col-10">
+            <h1 class="fw-bold">{{data.nombre}}</h1>
+            <!-- <mat-divider></mat-divider> -->
         </div>
+        <div class="col-2">
+            <button mat-button mat-dialog-close class="w-100"><i class="fa-solid fa-x"></i></button>
+        </div>
+
     </div>
-</div>
-<div mat-dialog-content>
     <div class="row">
         <div class="col-9">
+
             <mat-card class="">
                 <mat-card-header class="mb-3">
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>Nombre</mat-card-title>
-                    <mat-card-subtitle>Email</mat-card-subtitle>
+                    <div mat-card-avatar class="example-header-image">
+                        <img mat-card-avatar src="{{data.avatar}}" alt="" *ngIf="data.avatar">
+                    </div>
+                    <mat-card-title>{{data.usu}}</mat-card-title>
+                    <mat-card-subtitle>{{data.email}}</mat-card-subtitle>
                 </mat-card-header>
-                <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                    alt="Photo of a Shiba Inu"> -->
+
                 <mat-card-content>
                     <div class="mb-3">
-                        <p>Categorías</p>
+                        <p class="fw-bold">{{"EVENTO.ETIQUETAS" | translate}}</p>
                         <mat-chip-list aria-label="Fish selection">
-                            <mat-chip>One fish</mat-chip>
-                            <mat-chip>Two fish</mat-chip>
-                            <mat-chip color="primary" selected>Primary fish</mat-chip>
-                            <mat-chip color="accent" selected>Accent fish</mat-chip>
+                            <mat-chip *ngFor="let ele of eventTags">{{ele.nombre}}</mat-chip>
                         </mat-chip-list>
                     </div>
-                    <div>
-                        <p>
-                            {{data.descripcion}}
-                        </p>
+                    <div class="mt-2 mb-3 form-outline">
+                        <label class="form-label fw-bold" for="textAreaExample">{{"EVENTO.DESCRIPCION" |
+                            translate}}</label>
+                        <textarea class="form-control" id="textAreaExample1" rows="4"
+                            readonly>{{data.descripcion}}</textarea>
                     </div>
                     <div>
-                        <p>Fecha Inicio: {{data.fechaInicio}}</p>
+                        <p>{{"EVENTO.FECHA_HORA_INICIO" | translate}}: {{data.fechaInicio}}</p>
                     </div>
                 </mat-card-content>
                 <mat-card-actions></mat-card-actions>
             </mat-card>
+
         </div>
         <div class="col-3">
-            <div class="d-flex flex-column">
-                <button class="btn border my-2">opt1</button>
-                <button class="btn border mb-2">opt2</button>
-                <button class="btn border mb-2">opt3</button>
-                <button class="btn border mb-2">opt4</button>
+            <div class="d-flex flex-wrap">
+                <button mat-raised-button color="warn" (click)="likeOrDeleteLike(data.id)" class="mb-2">
+                    <mat-icon>favorite</mat-icon> {{"BOTONES.LIKE" | translate}}
+                </button>
+                <button mat-raised-button color="primary" matTooltip="{{'BOTONES.PARTICIPAR_EVENTO' | translate}}"
+                    class="mb-2" (click)="participarEvento(data.id)">
+                    <i class="fa-solid fa-hand"></i> {{"BOTONES.PARTICIPAR" | translate}}
+                </button>
             </div>
         </div>
     </div>
-
-
-
 </div>

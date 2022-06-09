@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand navbar-light p-4 d-flex justify-content-between" style="background-color: #B6D7F0;">
+    <button mat-button color="primary" class="ms-1" *ngIf="isAuth">
+        {{"MENU.WELCOME" | translate}} {{name}}
+    </button>
+    <button mat-button color="primary" class="ms-4" *ngIf="!isAuth">
+        {{"MENU.TEXTO_NO_USER" | translate}}
+    </button>
+
+    <button mat-raised-button class="ms-3" color="primary" (click)="openDialog()">
+        <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-circle-info"></i></span>
+        {{"MENU.INFO" | translate}}
+    </button>
+</nav>

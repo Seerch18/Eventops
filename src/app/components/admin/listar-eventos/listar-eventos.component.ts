@@ -24,6 +24,9 @@ export class ListarEventosComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga un array los eventos obtenidos de la llamada al servicio
+   */
   listAllEvents() {
     this.adminService.listAllEvents().subscribe((resp) => {
       if (resp) {

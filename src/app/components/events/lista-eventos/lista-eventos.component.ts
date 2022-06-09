@@ -10,6 +10,8 @@ import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from '../../../services/admin/admin.service';
 import { DeleteComponent } from '../../dialog/delete/delete.component';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -21,16 +23,20 @@ export class ListaEventosComponent implements OnInit {
   @Input() eventos: any;
   private user: any;
   public isAdmin: boolean;
+  durationInSeconds = 3;
 
   constructor(
     private eventoService: EventoService,
     public dialog: MatDialog,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private _router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.isAdmin = false;
   }
 
   ngOnInit(): void {
+    console.log(this.aEventos);
     this.getLSUser();
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
@@ -39,18 +45,29 @@ export class ListaEventosComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga el usuario guardado en sesión
+   */
   getLSUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
     }
   }
 
+  /**
+   * Crea un me gusta del evento para el usuario
+   * @param eventoId
+   */
   like(eventoId: number) {
-    this.eventoService
-      .createLike(eventoId)
-      .subscribe((resp) => console.log(resp));
+    this.eventoService.createLike(eventoId).subscribe((resp) => {
+      this.openSnackBar('Añadido a... Me Gustan');
+    });
   }
 
+  /**
+   * Abre una ventana modal con los datos del evento filtrado por id
+   * @param eventoId
+   */
   openDialog(eventoId: number) {
     this.eventoService.readEvent(eventoId).subscribe((resp) => {
       if (resp) {
@@ -63,9 +80,13 @@ export class ListaEventosComponent implements OnInit {
     });
   }
 
+  /**
+   * Eliminar evento filtrado por su id
+   * @param eventoId
+   */
   eliminarEvento(eventoId: number) {
     if (this.user.rol == 'ADMIN') {
-      this.openDeleteDialog('', '', 'admin_evento', { id: eventoId });
+      this.openDeleteDialog('admin_evento', { id: eventoId });
       // this.adminService.deleteEvent(eventoId).subscribe((resp) => {
       //   if (!resp['delete']) {
       //     alert('Error al eliminar el registro');
@@ -82,25 +103,42 @@ export class ListaEventosComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga en el array de eventos los datos recibidos de la llamada al servicio
+   */
   cargarEventos() {
     this.eventoService
       .listEvents()
       .subscribe((eventos) => (this.aEventos = eventos));
   }
 
+  /**
+   * Elimina o crea un me gusta para el usuario
+   * @param eventoId
+   */
   likeOrDeleteLike(eventoId: number) {
-    this.eventoService.getLikeEvents(eventoId).subscribe((resp) => {
-      console.log(resp.length);
-      if (resp.length == 0) {
-        this.like(eventoId);
-      } else {
-        this.eventoService
-          .deleteLike(eventoId)
-          .subscribe((resp) => console.log(resp));
-      }
-    });
+    if (this.user) {
+      this.eventoService.getLikeEvents(eventoId).subscribe((resp) => {
+        if (resp.length == 0) {
+          this.like(eventoId);
+        } else {
+          this.eventoService.deleteLike(eventoId).subscribe((resp) => {
+            this.openSnackBar('Eliminado de... Me Gustan');
+          });
+        }
+      });
+    } else {
+      this._router.navigateByUrl('login');
+    }
   }
 
+  /**
+   * Limita una cadena recibida por parámetro
+   * @param cadena
+   * @param limite
+   * @param sufijo
+   * @returns
+   */
   limitar_cadena(cadena: any, limite: any, sufijo: any) {
     // Si la longitud es mayor que el límite...
     if (cadena.length > limite) {
@@ -112,12 +150,12 @@ export class ListaEventosComponent implements OnInit {
     return cadena;
   }
 
-  openDeleteDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    element: any,
-    object: any
-  ): void {
+  /**
+   * Llama a un componente que muestra un aviso
+   * @param element
+   * @param object
+   */
+  openDeleteDialog(element: any, object: any): void {
     this.dialog.open(DeleteComponent, {
       width: '250px',
       data: {
@@ -125,5 +163,18 @@ export class ListaEventosComponent implements OnInit {
         object: object,
       },
     });
+  }
+
+  /**
+   * Muestra una alerta con el mensaje recibido por parámetro
+   * @param message
+   */
+  openSnackBar(message: any) {
+    this._snackBar
+      .open(message, 'UNDO', {
+        duration: this.durationInSeconds * 1000,
+      })
+      .afterOpened()
+      .subscribe(() => {});
   }
 }

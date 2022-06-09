@@ -36,7 +36,7 @@ import { BodyComponent } from './components/body/body.component';
 import { MenuComponent } from './components/menus/menu/menu.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MisEventosComponent } from './components/events/mis-eventos/mis-eventos.component';
-import { MenuBusquedaRapidaComponent } from './components/menus/menu-busqueda-rapida/menu-busqueda-rapida.component';
+import { MenuInfoComponent } from './components/menus/menu-info/menu-info.component';
 import { CrearEventoComponent } from './components/events/crear-evento/crear-evento.component';
 import { MenuBusquedaComponent } from './components/menus/menu-busqueda/menu-busqueda.component';
 import { ProximosEventosComponent } from './components/events/proximos-eventos/proximos-eventos.component';
@@ -51,6 +51,7 @@ import { Page401Component } from './components/errors/page401/page401.component'
 import { Page403Component } from './components/errors/page403/page403.component';
 import { ListaEventosComponent } from './components/events/lista-eventos/lista-eventos.component';
 import { DeleteComponent } from './components/dialog/delete/delete.component';
+import { AboutComponent } from './components/dialog/about/about.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
@@ -65,7 +66,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MenuComponent,
     ProfileComponent,
     MisEventosComponent,
-    MenuBusquedaRapidaComponent,
+    MenuInfoComponent,
     CrearEventoComponent,
     FechaPipe,
     MenuBusquedaComponent,
@@ -81,6 +82,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     Page403Component,
     ListaEventosComponent,
     DeleteComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

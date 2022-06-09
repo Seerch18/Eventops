@@ -122,4 +122,22 @@ export class ListarEventosTablaComponent implements OnInit {
         this.cargarEventos();
       });
   }
+
+  /**
+   * Limita una cadena recibida por parámetro
+   * @param cadena
+   * @param limite
+   * @param sufijo
+   * @returns
+   */
+  limitar_cadena(cadena: any, limite: any, sufijo: any) {
+    // Si la longitud es mayor que el límite...
+    if (cadena.length > limite) {
+      // Entonces corta la cadena y ponle el sufijo
+      return cadena.slice(0, limite) + sufijo;
+    }
+
+    // Si no, entonces devuelve la cadena normal
+    return cadena;
+  }
 }

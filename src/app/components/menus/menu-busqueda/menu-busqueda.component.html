@@ -1,92 +1,6 @@
-<!-- <form [formGroup]="frmFiltro" (submit)="filtrarEventos()">
-    <ul class="nav flex-column">
-
-        <li class="nav-item text-center mb-2">
-            <h3 class="p-2 m-2 border-bottom">Búsqueda / Filtros</h3>
-        </li>
-
-        <li class="nav-item mb-2">
-            <select class="form-select rounded-pill border-success selectP" formControlName="ciudad">
-                <option selected value="">Ciudad</option>
-                <option disabled value="">- - - - - - -</option>
-                <option *ngFor="let ele of cities;" value="{{ele.id}}">{{ele.nombre}}</option>
-            </select>
-        </li>
-
-        <li class="nav-item mb-2">
-            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseCateg" aria-expanded="false"
-                aria-controls="collapseCateg">Categorías</button>
-            <div class="collapse mt-2" id="collapseCateg">
-                <div class="card card-body">
-                    <select class="form-select" multiple aria-label="multiple select example"
-                        formControlName="etiquetas">
-                        <option selected value="">Categorías</option>
-                        <option disabled value="">- - - - - - - - - -</option>
-                        <option *ngFor="let ele of tags;" value="{{ele.id}}">{{ele.nombre}}</option>
-                    </select>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item mb-2">
-            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseDate" aria-expanded="false"
-                aria-controls="collapseDate">Fecha</button>
-
-            <div class="collapse mt-2" id="collapseDate">
-                <div class="card card-body">
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="form-outline">
-                                <input type="date" id="dateStart" class="form-control" formControlName="fechaInicio" />
-                                <label class="form-label" for="dateStart">Fecha Inicio</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-outline">
-                                <input type="date" id="dateEnd" class="form-control" formControlName="fechaFin" />
-                                <label class="form-label" for="dateEnd">Fecha Fin</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item mb-2">
-            <button class="btn btn-outline-success w-100 rounded-pill text-start" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapseTime" aria-expanded="false"
-                aria-controls="collapseTime">Hora</button>
-            <div class="collapse mt-2" id="collapseTime">
-                <div class="card card-body">
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="form-outline">
-                                <input type="time" id="timeStart" class="form-control" formControlName="horaInicio" />
-                                <label class="form-label" for="timeStart">Hora Inicio</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-outline">
-                                <input type="time" id="timeEnd" class="form-control" formControlName="horaFin" />
-                                <label class="form-label" for="timeEnd">Hora Fin</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <button class="btn btn-outline-success w-100 rounded-pill text-center" type="submit">
-                Buscar <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </li>
-    </ul>
-</form> -->
-
-<h3>{{"FILTROS.TITLE" | translate}}</h3>
-<mat-divider></mat-divider>
+<div class="w-100 rounded p-2 mb-2 text-center primary">
+    <h2 class="p-0 m-0">{{"FILTROS.TITLE" | translate}}</h2>
+</div>
 
 <form [formGroup]="frmFiltro" (submit)="filtrarEventos()" class="mt-2">
 
@@ -94,7 +8,7 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>
+                <mat-panel-title class="primary">
                     {{"FILTROS.CIUDAD" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -108,7 +22,7 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>
+                <mat-panel-title class="primary">
                     {{"FILTROS.CATEG" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -122,7 +36,7 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>
+                <mat-panel-title class="primary">
                     {{"FILTROS.FECHA" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -134,7 +48,7 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title>
+                <mat-panel-title class="primary">
                     {{"FILTROS.HORA" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>

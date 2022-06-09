@@ -13,8 +13,8 @@ export class AppComponent {
   public body_col: string = 'col-12';
 
   constructor(private translateService: TranslateService) {
-    this.translateService.setDefaultLang('English');
-    this.translateService.addLangs(['Espaniol', 'English']);
+    this.translateService.setDefaultLang('Español');
+    this.translateService.addLangs(['Español', 'English']);
     this.isAuth = false;
   }
 

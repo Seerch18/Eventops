@@ -18,10 +18,18 @@ export class AuthService {
     );
   }
 
+  /**
+   * Devuelve el usuario actual
+   */
   get getUser(): any {
     return this.currentUser.value;
   }
 
+  /**
+   * Devuelve el usuario registrado
+   * @param datos
+   * @returns
+   */
   register(datos: any): Observable<any> {
     return this.httpClient.post(
       `${this.url}/register.php`,
@@ -29,11 +37,18 @@ export class AuthService {
     );
   }
 
-  // email & password
+  /**
+   * Devuelve el usuario logueado
+   * @param datos
+   * @returns
+   */
   login(datos: any): Observable<any> {
     return this.httpClient.post(`${this.url}/login.php`, JSON.stringify(datos));
   }
 
+  /**
+   * Elimina la sesión del usuario
+   */
   logout() {
     localStorage.removeItem(this.nameUserLS);
     this.currentUser.next(null!);
@@ -41,6 +56,10 @@ export class AuthService {
     window.location.reload();
   }
 
+  /**
+   * Guarda el usuarion en sesión
+   * @param user
+   */
   setUserToLocalStorage(user: any) {
     localStorage.setItem(this.nameUserLS, JSON.stringify(user));
     this.currentUser.next(user);

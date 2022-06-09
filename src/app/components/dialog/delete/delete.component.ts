@@ -25,6 +25,9 @@ export class DeleteComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Borra de la base de datos el elemento recibod en data
+   */
   borrar() {
     if (this.data['element'] == this.EVENTO) {
       this.eventoService.deleteEvent(this.data['object'].id).subscribe(() => {

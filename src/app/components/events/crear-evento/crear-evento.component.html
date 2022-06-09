@@ -6,15 +6,17 @@
                     <form [formGroup]="frmEvento" (submit)="crearEditarEvento()">
                         <!-- Nombre input -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="name" class="form-control" formControlName="name" />
-                            <label class="form-label" for="name">{{"EVENTO.NOMBRE" | translate}}</label>
+                            <input type="text" id="name" class="form-control" formControlName="name"
+                                placeholder="{{'EVENTO.NOMBRE' | translate}}..." />
+                            <label class="form-label mt-1 fw-bold" for="name">{{"EVENTO.NOMBRE" | translate}}</label>
                         </div>
 
                         <!-- Descripción input -->
                         <div class="form-outline mb-4">
-                            <textarea class="form-control" id="description" rows="4"
-                                formControlName="description"></textarea>
-                            <label class="form-label" for="description">{{"EVENTO.DESCRIPCION" | translate}}</label>
+                            <textarea class="form-control" id="description" rows="4" formControlName="description"
+                                placeholder="{{'EVENTO.DESCRIPCION' | translate}}..."></textarea>
+                            <label class="form-label mt-1 fw-bold" for="description">{{"EVENTO.DESCRIPCION" |
+                                translate}}</label>
                         </div>
 
                         <div class="row mb-4">
@@ -23,7 +25,7 @@
                                 <div class="form-outline">
                                     <input type="date" id="dateStart" class="form-control" formControlName="dateStart"
                                         min="{{fechaMin | fecha}}" />
-                                    <label class="form-label" for="dateStart">{{"EVENTO.FECHA_INICIO" |
+                                    <label class="form-label mt-1 fw-bold" for="dateStart">{{"EVENTO.FECHA_INICIO" |
                                         translate}}</label>
                                 </div>
                             </div>
@@ -35,7 +37,7 @@
                                 <div class="form-outline">
                                     <input type="time" id="timeStart" class="form-control"
                                         formControlName="timeStart" />
-                                    <label class="form-label" for="timeStart">{{"EVENTO.HORA_INICIO" |
+                                    <label class="form-label mt-1 fw-bold" for="timeStart">{{"EVENTO.HORA_INICIO" |
                                         translate}}</label>
                                 </div>
                             </div>
@@ -67,10 +69,14 @@
                         </div>
 
                         <!-- Submit button -->
-                        <button type="submit" id="botonEvento" [disabled]="frmEvento.invalid"
-                            class="btn btn-primary mb-4">{{"EVENTO.BOTON_GUARDAR" | translate}}</button>
-                        <button type="button" id="botonCancelarBorrar" (click)="cancelarBorrarEvento()"
-                            class="btn btn-danger ms-2 mb-4">{{"EVENTO.BOTON_CANCELAR" | translate}}</button>
+                        <button mat-raised-button color="primary" type="submit" id="botonEvento"
+                            [disabled]="frmEvento.invalid" class="mb-4">
+                            {{"EVENTO.BOTON_GUARDAR" | translate}}
+                        </button>
+                        <button mat-stroked-button color="warn" type="button" id="botonCancelarBorrar"
+                            (click)="cancelarBorrarEvento()" class="ms-2 mb-4">
+                            {{"EVENTO.BOTON_CANCELAR" | translate}}
+                        </button>
                     </form>
                 </div>
                 <div class="col-6">

@@ -3,8 +3,8 @@
     <nav class="nav nav-borders">
         <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
             target="__blank">{{"PERFIL.PERFIL" | translate}}</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
-            target="__blank">{{"PERFIL.AJUSTES" | translate}}</a>
+        <!-- <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
+            target="__blank">{{"PERFIL.AJUSTES" | translate}}</a> -->
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -31,35 +31,28 @@
                         <div class="row gx-3 mb-3">
                             <!-- Form Group (nick)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="nick">{{"LISTA_USU.NICK" | translate}}</label>
+                                <label class="small mb-1 fw-bold" for="nick">{{"LISTA_USU.NICK" | translate}}</label>
                                 <input class="form-control" id="nick" type="text" placeholder="Enter your username"
                                     formControlName="nick" value="{{user.nick}}">
                             </div>
                             <!-- Form Group (name)-->
                             <div class="col-md-6">
-                                <label class="small mb-1" for="Name">{{"LISTA_USU.NOMBRE" | translate}}</label>
+                                <label class="small mb-1 fw-bold" for="Name">{{"LISTA_USU.NOMBRE" | translate}}</label>
                                 <input class="form-control" id="name" type="text" placeholder="Enter your first name"
                                     formControlName="name" value="{{user.nombre}}">
                             </div>
                         </div>
-
-                        <!-- <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text"
-                                    placeholder="Enter your location" value="">
-                            </div>
-                        </div> -->
-
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="email">{{"LISTA_USU.EMAIL" | translate}}</label>
+                            <label class="small mb-1 fw-bold" for="email">{{"LISTA_USU.EMAIL" | translate}}</label>
                             <input class="form-control" id="email" type="email" placeholder="Enter your email address"
                                 formControlName="email" value="{{user.email}}">
                         </div>
-                        <!-- Submit button -->
-                        <button type="submit" id="editar" [disabled]="frmUsuario.invalid"
-                            class="btn btn-primary mb-4">{{"BOTONES.GUARDAR" | translate}}</button>
+                        <!-- <button type="submit" id="editar" [disabled]="frmUsuario.invalid"
+                            class="btn btn-primary mb-4">{{"BOTONES.GUARDAR" | translate}}</button> -->
+                        <button mat-raised-button color="primary" type="submit" disabled class="mb-2">
+                            {{"BOTONES.GUARDAR" | translate}}
+                        </button>
                     </form>
                 </div>
             </div>

@@ -40,12 +40,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * Guarda los datos del usuario logueado en sesión
+   * @param usuario
+   */
   checkUserLogin(usuario: any) {
     this.authService.setUserToLocalStorage(usuario);
     this._router.navigateByUrl('/');
     window.location.reload();
   }
 
+  /**
+   * Activa un mensaje para el usuario cuando falla al introducir las credenciales
+   */
   userSignIn() {
     const formulario = this.frmUsuario.value;
     this.invalidCredentials = true;
@@ -60,6 +67,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Loguear al usuario
+   */
   async login() {
     if (this.frmUsuario.valid) {
       this.authService.login(this.frmUsuario.value).subscribe((usuario) => {

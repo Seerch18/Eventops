@@ -8,14 +8,16 @@
   "LOGIN": {
     "EMAIL": "Dirección de correo",
     "PASSWORD": "Contraseña",
-    "LOGIN": "Entrar"
+    "LOGIN": "Entrar",
+    "TEXTO": "¿Todavía no tienes una cuenta?"
   },
   "REGISTRO": {
     "NICK": "Nick",
     "NOMBRE": "Nombre",
     "EMAIL": "Dirección de correo",
     "PASSWORD": "Contraseña",
-    "REGISTRO": "Registrar"
+    "REGISTRO": "Registrar",
+    "TEXTO": "¿Ya tienes una cuenta?"
   },
   "LOGOUT": {
     "LOGOUT": "Salir"
@@ -35,7 +37,11 @@
     "ACTUALIZAR": "Actualizar",
     "VER_EVENTO": "Ver evento",
     "NO_LIKE": "Quitar me gusta",
-    "LIKE": "Me gusta"
+    "LIKE": "Me gusta",
+    "PARTICIPAR": "Participar",
+    "PARTICIPAR_EVENTO": "Participar en el evento",
+    "ACCIONES": "Acciones",
+    "CERRAR": "Cerrar"
   },
   "BODY": {
     "RESULTADO": "Resultado de la búsqueda: ",
@@ -45,7 +51,14 @@
     "TITLE": "Eliminar Registro",
     "CONTENT": "¿Estás seguro de eliminar el registro?",
     "NO": "No",
-    "SI": "Si"
+    "SI": "Si",
+    "PROYECTO": "Proyecto",
+    "TEXTO_ABOUT_1": "Proyecto realizado por Sergio Espejo Illanes",
+    "TEXTO_ABOUT_2": "cursante de ciclo superior de",
+    "TEXTO_ABOUT_3": "Desarrollo de Aplicaciones Web (DAW)",
+    "TEXTO_ABOUT_4": "impartido en el",
+    "TEXTO_ABOUT_5": "instituto I.E.S Trassierra",
+    "TEXTO_ABOUT_6": "y supervisado por Mari Luz Sánchez Rubio profesora y tutora"
   },
   "EVENTO": {
     "NOMBRE": "Nombre del Evento",
@@ -73,7 +86,11 @@
     "MIS_EVENTOS": "Mis Eventos",
     "ME_GUSTAN": "Me Gustan",
     "LISTA_EVENTOS": "Listado de Eventos",
-    "LISTA_USU": "Listado de Usuarios"
+    "LISTA_USU": "Listado de Usuarios",
+    "INFO": "Acerca de ...",
+    "INFO_FULL": "Acerca de la página",
+    "WELCOME": "Bienvenid@",
+    "TEXTO_NO_USER": "¡Registrate para descubrir todas las funcionalidades!"
   },
   "FILTROS": {
     "TITLE": "Filtros Búsqueda",

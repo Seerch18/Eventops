@@ -8,14 +8,16 @@
   "LOGIN": {
     "EMAIL": "Mail address",
     "PASSWORD": "Password",
-    "LOGIN": "Log in"
+    "LOGIN": "Log in",
+    "TEXTO": "Don't have an account?"
   },
   "REGISTRO": {
     "NICK": "Nick",
     "NOMBRE": "Name",
     "EMAIL": "Mail address",
     "PASSWORD": "Password",
-    "REGISTRO": "Sign Up"
+    "REGISTRO": "Sign Up",
+    "TEXTO": "You have an account?"
   },
   "LOGOUT": {
     "LOGOUT": "Log Out"
@@ -35,7 +37,11 @@
     "ACTUALIZAR": "Update",
     "VER_EVENTO": "See event",
     "NO_LIKE": "Remove like",
-    "LIKE": "Like"
+    "LIKE": "Like",
+    "PARTICIPAR": "Participate",
+    "PARTICIPAR_EVENTO": "Participate in the event",
+    "ACCIONES": "Actions",
+    "CERRAR": "Close"
   },
   "BODY": {
     "RESULTADO": "Search result:",
@@ -45,7 +51,14 @@
     "TITLE": "Delete Record",
     "CONTENT": "Are you sure you want to delete the record?",
     "NO": "No",
-    "SI": "Yes"
+    "SI": "Yes",
+    "PROYECTO": "Project",
+    "TEXTO_ABOUT_1": "Project carried out by Sergio Espejo Illanes",
+    "TEXTO_ABOUT_2": "student of the upper cycle of",
+    "TEXTO_ABOUT_3": "Web Application Development (DAW)",
+    "TEXTO_ABOUT_4": "taught at the",
+    "TEXTO_ABOUT_5": "I.E.S Trassierra institute",
+    "TEXTO_ABOUT_6": "and supervised by Mari Luz Sánchez Rubio, teacher and tutor"
   },
   "EVENTO": {
     "NOMBRE": "Name of the event",
@@ -73,7 +86,11 @@
     "MIS_EVENTOS": "My Events",
     "ME_GUSTAN": "Like",
     "LISTA_EVENTOS": "Events List",
-    "LISTA_USU": "User List"
+    "LISTA_USU": "User List",
+    "INFO": "About ...",
+    "INFO_FULL": "About this page",
+    "WELCOME": "Welcome",
+    "TEXTO_NO_USER": "Sign up to discover all the features!"
   },
   "FILTROS": {
     "TITLE": "Filters Search",

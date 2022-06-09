@@ -23,15 +23,10 @@
                         <small
                             *ngIf="frmUsuario.controls['password'].hasError('required') && frmUsuario.controls['password'].touched"
                             class="text-danger font-italic">{{ "FORM_VALIDS.REQUIRED" | translate }}</small>
-                        <!-- <small
-                            *ngIf="frmUsuario.controls['password'].hasError('minlength') && frmUsuario.controls['password'].touched"
-                            class="text-danger font-italic">La longitud de la contraseña debe de ser mínimo
-                            de 8 caracteres</small> -->
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="frmUsuario.invalid">
-                        {{ "LOGIN.LOGIN" | translate }}
-                    </button>
+                    <button type="button" class="btn btn-outline-primary" type="submit"
+                        [disabled]="frmUsuario.invalid">{{"LOGIN.LOGIN" | translate }}</button>
 
                     <div class="mb-4">
                         <small *ngIf="invalidCredentials" class="text-danger font-italic">{{ "FORM_VALIDS.INVALID" |
@@ -42,10 +37,10 @@
 
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+                    {{"LOGIN.TEXTO" | translate}}
                 </div>
                 <div class="d-flex justify-content-center links">
-                    <a href="#">Forgot your password?</a>
+                    <a href="/register">{{"REGISTRO.REGISTRO" | translate}}</a>
                 </div>
             </div>
         </div>

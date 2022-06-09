@@ -1,14 +1,16 @@
 <div class="list-group">
-    <button class="list-group-item list-group-item-action mb-2 border" *ngFor="let ele of aEventos">
+    <button class="list-group-item list-group-item-action mb-2 border" *ngFor="let ele of aEventos"
+        style="background-color: hsl(0, 0%, 96%)">
         <div class="row">
             <!-- evento -->
-            <div class="col-10 rounded" (click)="openDialog(ele.id)" style="background-color: hsl(0, 0%, 96%)">
+            <div class="col-10 rounded border-end" (click)="openDialog(ele.id)">
                 <div class="row">
                     <div class="col-12 d-flex flex-wrap mt-1">
-                        <h4 class="w-75">{{ele.nombre}}</h4>
+                        <h4 class="w-75 fw-bold" style="color: #3f51b5;">{{ele.nombre}}</h4>
 
                         <div class="ms-2 p-2">
-                            <img src="{{ele.avatar}}" alt="" width="25" height="25" class="rounded-circle me-2">
+                            <img src="../../../../assets/IMG/avatar.jpg" alt="" width="25" height="25"
+                                class="rounded-circle me-2">
                             <span>{{ele.nick}}</span>
                         </div>
 
@@ -27,26 +29,29 @@
             </div>
             <!-- acciónes -->
             <div class="col-2">
-                <a routerLink="/saveEvent/{{ele.id}}" *ngIf="isAdmin">
-                    <button mat-icon-button color="primary" matTooltip="{{'BOTONES.EDITAR' | translate}}">
-                        <mat-icon>edit</mat-icon>
+
+                <div class="d-flex justify-content-center align-items-center flex-wrap h-100 w-100">
+                    <a routerLink="/saveEvent/{{ele.id}}" *ngIf="isAdmin">
+                        <button mat-icon-button color="primary" matTooltip="{{'BOTONES.EDITAR' | translate}}">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </a>
+                    <button mat-icon-button color="warn" matTooltip="{{'BOTONES.ELIMINAR' | translate}}"
+                        (click)="eliminarEvento(ele.id)" *ngIf="isAdmin">
+                        <mat-icon>delete</mat-icon>
                     </button>
-                </a>
-                <button mat-icon-button color="warn" matTooltip="{{'BOTONES.ELIMINAR' | translate}}"
-                    (click)="eliminarEvento(ele.id)" *ngIf="isAdmin">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="{{'BOTONES.LIKE' | translate}}"
-                    (click)="likeOrDeleteLike(ele.id)">
-                    <mat-icon>favorite</mat-icon>
-                </button>
-                <!-- <button mat-icon-button matTooltip="Ver evento" (click)="openDialog(ele.id)"><i
-                        class="fa-solid fa-eye"></i></button> -->
+                    <button mat-icon-button color="primary" matTooltip="{{'BOTONES.LIKE' | translate}}"
+                        (click)="likeOrDeleteLike(ele.id)">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+
             </div>
         </div>
     </button>
 </div>
 
 <div *ngIf="aEventos.length==0" class="alert alert-dark text-center mt-3">
-    <h6 class="alert-heading">{{"LISTA_EVENTOS.NO_EVENTOS" | translate}}</h6>
+    <h5 class="alert-heading">{{"LISTA_EVENTOS.NO_EVENTOS" | translate}}</h5>
+    <i class="fa-solid fa-circle-exclamation"></i>
 </div>

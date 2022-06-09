@@ -8,12 +8,12 @@ export class EventoService {
   private url = 'http://localhost/apirestangular/api/events';
   private urlFilters = 'http://localhost/apirestangular/api/filters';
   private urlLikes = 'http://localhost/apirestangular/api/likes';
+  private urlEventSub = 'http://localhost/apirestangular/api/eventSub';
   private userId: number | undefined;
 
   constructor(private http: HttpClient) {
     if (localStorage.getItem('user')) {
       let usuario = JSON.parse(localStorage.getItem('user')!);
-      console.log(usuario.id);
       this.userId = usuario.id;
     }
   }
@@ -80,5 +80,30 @@ export class EventoService {
 
   readEvent(eventoId: number): Observable<any> {
     return this.http.get(`${this.url}/readEvent.php?eventoId=${eventoId}`);
+  }
+
+  participarEvento(eventoId: number): Observable<any> {
+    return this.http.get(
+      `${this.urlEventSub}/createEventSub.php?eventoId=${eventoId}`
+    );
+  }
+
+  eliminarParticipacionEvento(eventoId: number): Observable<any> {
+    return this.http.delete(
+      `${this.urlEventSub}/deleteEventSub.php?eventoId=${eventoId}`
+    );
+  }
+
+  readParticipacionesEvento(
+    eventoId: number,
+    idUsu: boolean = false
+  ): Observable<any> {
+    let usuId: any = 0;
+    if (idUsu) {
+      usuId = this.userId;
+    }
+    return this.http.get(
+      `${this.urlEventSub}/readEventSub.php?eventoId=${eventoId}&usuarioId=${usuId}`
+    );
   }
 }

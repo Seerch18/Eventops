@@ -263,8 +263,9 @@ export class GooglemapsComponent implements OnInit, OnChanges {
     let contenedor = this.document.createElement('div');
     contenedor.id = 'contentInsideMap';
     contenedor.classList.add('d-flex');
-    contenedor.classList.add('flex-column');
     contenedor.classList.add('justify-content-center');
+    contenedor.classList.add('align-items-center');
+    contenedor.classList.add('flex-column');
     let title = this.document.createElement('p');
     title.textContent = nombre;
     let subtitle = this.document.createElement('p');

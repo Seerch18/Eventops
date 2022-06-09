@@ -1,43 +1,48 @@
-<!-- 1º Menu -->
-
 <nav class="navbar navbar-expand navbar-light bg-white d-flex justify-content-between">
     <ul class="navbar-nav flex-row ms-2">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="#"><i class="fa-brands fa-instagram iconSize"></i></a>
+            <a class="nav-link" aria-current="page" href="https://www.instagram.com/sergioespejo02/"><i
+                    class="fa-brands fa-instagram iconSize"></i></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="#"><i class="fa-brands fa-twitter iconSize"></i></a>
+            <a class="nav-link" href="https://twitter.com/sergioespejo02"><i
+                    class="fa-brands fa-twitter iconSize"></i></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="#"><i class="fa-brands fa-google-plus-g iconSize"></i></a>
+            <a class="nav-link" href="https://www.google.es/"><i class="fa-brands fa-google-plus-g iconSize"></i></a>
         </li>
     </ul>
-    <a class="navbar-brand" routerLink="#">
-        <img src="../../../assets/IMG/logo.png" alt="" width="150" height="100">
+    <a class="navbar-brand" routerLink="/">
+        <img src="../../../assets/IMG/logoMapaTextoSE.png" alt="" width="150" height="100">
     </a>
 
     <ul class="navbar-nav flex-row me-2">
 
         <li class="nav-item pt-2 me-3">
-            <!-- <button mat-icon-button color="primary" matTooltip="Cambiar Idioma" (click)="changeLang($event)">
-                <i class="fa-solid fa-globe"></i>
-            </button> -->
-            <mat-select placeholder="Elige el idioma" (valueChange)="changeLang($event)" [(value)]="selected">
-                <mat-option *ngFor="let lang of langs" [value]="lang">
-                    {{lang}}
-                </mat-option>
-            </mat-select>
+            <div class="d-flex flex-row">
+                <div mat-card-avatar class="me-2"><img src="{{idioma}}" alt="" width="20" height="20">
+                </div>
+                <mat-select placeholder="Elige el idioma" (valueChange)="changeLang($event)" [(value)]="selected">
+                    <mat-option *ngFor="let lang of langs" [value]="lang">
+                        {{lang}}
+                    </mat-option>
+                </mat-select>
+            </div>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" routerLink="/login" *ngIf="!isAuth">
-                <button class="btn btn-primary">{{"LOGIN.LOGIN" | translate}}</button>
+            <a class="nav-link" routerLink="/login" *ngIf="!isAuth" matTooltip="{{'LOGIN.LOGIN' | translate}}">
+                <button mat-fab color="primary">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </button>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" routerLink="/register" *ngIf="!isAuth">
-                <button class="btn btn-primary">{{"REGISTRO.REGISTRO" | translate}}</button>
+            <a class="nav-link" routerLink="/register" *ngIf="!isAuth" matTooltip="{{'REGISTRO.REGISTRO' | translate}}">
+                <button mat-fab color="primary">
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
             </a>
         </li>
 
@@ -48,18 +53,23 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="{{avatar}}" alt="" width="45" height="45" class="rounded-circle me-2">
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end ext-small shadow" aria-labelledby="dropdownUser2">
+                <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
                     <li class="nav-item">
                         <a routerLink="saveEvent" class="nav-link link-dark">
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-plus"></i></span>
                             {{"EVENTO.BOTON_CREAR" | translate}}
                         </a>
                     </li>
-                    <li><a class="dropdown-item" routerLink="#">
+                    <li><button class="dropdown-item" (click)="openDialog()">
+                            <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-circle-info"></i></span>
+                            {{"MENU.INFO" | translate}}
+                        </button>
+                    </li>
+                    <!-- <li><a class="dropdown-item" routerLink="#">
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-gear"></i></span>
                             {{"PERFIL.AJUSTES" | translate}}
                         </a>
-                    </li>
+                    </li> -->
                     <li><a class="dropdown-item" routerLink="profile">
                             <span class="bi me-2" width="16" height="16"><i class="fa-solid fa-user"></i></span>
                             {{"PERFIL.PERFIL" | translate}}
@@ -69,21 +79,14 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="nav-link" routerLink="#" *ngIf="isAuth">
-                            <app-logout></app-logout>
-                        </a>
+                        <div class="d-flex justify-content-center">
+                            <a class="nav-link" routerLink="#" *ngIf="isAuth">
+                                <app-logout></app-logout>
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
         </li>
-
-        <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/"><button class="btn btn-primary" type="submit"><i
-                        class="fa-solid fa-house"></i></button></a>
-        </li> -->
-
     </ul>
 </nav>
-
-<!-- 2º Menu -->
-<!-- <app-menu-busqueda-rapida></app-menu-busqueda-rapida> -->

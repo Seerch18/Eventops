@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +18,6 @@ export class MenuComponent implements OnInit {
     this.getLSUser();
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
-        console.log('pasa');
         this.isAdmin = true;
       }
     }
@@ -26,7 +26,6 @@ export class MenuComponent implements OnInit {
   getLSUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
-      console.log(this.user);
     }
   }
 }

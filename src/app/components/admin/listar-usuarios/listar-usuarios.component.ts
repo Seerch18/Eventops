@@ -43,6 +43,9 @@ export class ListarUsuariosComponent implements OnInit {
     this.cargarUsuarios();
   }
 
+  /**
+   * Carga el usuario de la sesión
+   */
   getLSUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
@@ -50,14 +53,21 @@ export class ListarUsuariosComponent implements OnInit {
     }
   }
 
+  /**
+   * Paginación y ordenación
+   */
   pagAndSort() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
+  /**
+   * Elimina un usuario de la base de datos
+   * @param usuarioId
+   */
   eliminarUsuario(usuarioId: number) {
     if (this.user.rol == 'ADMIN') {
-      this.openDeleteDialog('', '', 'admin_usuario', { id: usuarioId });
+      this.openDeleteDialog('admin_usuario', { id: usuarioId });
       // this.adminService.deleteUser(usuarioId).subscribe((resp) => {
       //   if (!resp['delete']) {
       //     alert('Error al eliminar el registro');
@@ -67,6 +77,9 @@ export class ListarUsuariosComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga en un array los usuarios obtenidos de la llamada al servicio
+   */
   cargarUsuarios() {
     this.adminService.listAllUsers().subscribe((usuarios) => {
       if (usuarios['list']) {
@@ -78,12 +91,12 @@ export class ListarUsuariosComponent implements OnInit {
     });
   }
 
-  openDeleteDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    element: any,
-    object: any
-  ): void {
+  /**
+   * Llama a un componente y muestra un aviso
+   * @param element
+   * @param object
+   */
+  openDeleteDialog(element: any, object: any): void {
     this.dialog
       .open(DeleteComponent, {
         width: '250px',

@@ -1,31 +1,4 @@
-.selectP:hover {
-  background-color: #198754;
-  color: white;
-}
-
-.selectP {
-  color: #198754;
-}
-
-.selectP:focus {
-  background-color: white;
-  color: #198754;
-}
-
-.example-action-buttons {
-  padding-bottom: 20px;
-}
-
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
-
-.example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.example-headers-align .mat-form-field+.mat-form-field {
-  margin-left: 8px;
+.primary {
+  /* color: #3f51b5; */
+  color: #3f51b5;
 }

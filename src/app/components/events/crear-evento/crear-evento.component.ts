@@ -50,7 +50,10 @@ export class CrearEventoComponent implements OnInit {
     this.tagsList = [];
     this.eventTags = [];
     this.frmEvento = this.frmBuilder.group({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50),
+      ]),
       description: new FormControl(''),
       dateStart: new FormControl('', Validators.required),
       timeStart: new FormControl('', Validators.required),
@@ -77,12 +80,18 @@ export class CrearEventoComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga el usuario de la sesión
+   */
   getLSUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
     }
   }
 
+  /**
+   * Crear o editar evento
+   */
   crearEditarEvento() {
     // editar
     if (this._router.url.includes('saveEvent/' + this.evento.id)) {
@@ -111,13 +120,18 @@ export class CrearEventoComponent implements OnInit {
     }
   }
 
-  // función a la que se llama desde app-googlemaps y se le pasa la nueva localización
+  /**
+   * Función a la que se llama desde app-googlemaps y recibe la nueva localización
+   * @param newPosition
+   */
   addPosition(newPosition: any) {
     this.newPosition = newPosition;
     this.datosCampoUbicacion(this.newPosition.lat + ';' + this.newPosition.lng);
   }
 
-  // añade la ubicación en el campo del formulario
+  /**
+   * Añade la ubicación en el campo del formulario
+   */
   setPosition() {
     let lat = 0;
     let lng = 0;
@@ -132,7 +146,10 @@ export class CrearEventoComponent implements OnInit {
     this.datosCampoUbicacion(lat + ';' + lng);
   }
 
-  // añadir datos a los campos del formulario
+  /**
+   * Añadir datos a los campos del formulario
+   * @param id
+   */
   addDataFields(id: any) {
     if (this.user.rol == 'ADMIN') {
       this.adminService.getEvent(id).subscribe((evento) => {
@@ -166,6 +183,10 @@ export class CrearEventoComponent implements OnInit {
     }
   }
 
+  /**
+   * Establece en el campo del formulario las etiquetas obtenidas de la llamada al servicio
+   * @param id
+   */
   addTags(id: any) {
     this.etiquetaService.readEventTag(id).subscribe((resp) => {
       if (resp) {
@@ -179,13 +200,15 @@ export class CrearEventoComponent implements OnInit {
     });
   }
 
-  // elimina un evento y borra los datos de los campos del formulario
+  /**
+   * Elimina un evento y borra los datos de los campos del formulario
+   */
   cancelarBorrarEvento() {
     let boton = document.getElementById('botonCancelarBorrar');
     if (boton) {
       if (boton.innerHTML == 'Borrar Evento') {
         // eliminar evento de la bbdd
-        this.openDialog('0ms', '0ms', 'evento', this.evento);
+        this.openDialog('evento', this.evento);
       } else {
         // vaciar todos los campos
         this.datosCamposFormulario('', '', '', '', '');
@@ -194,6 +217,14 @@ export class CrearEventoComponent implements OnInit {
     }
   }
 
+  /**
+   * Rellena los campos del formulario recibido por parámetro
+   * @param nombre
+   * @param descripcion
+   * @param fechaIni
+   * @param horaIni
+   * @param precio
+   */
   datosCamposFormulario(
     nombre: any,
     descripcion: any,
@@ -208,10 +239,17 @@ export class CrearEventoComponent implements OnInit {
     this.frmEvento.controls['price'].setValue(precio);
   }
 
+  /**
+   * Rellena el campo ubicación del formulario
+   * @param ubi
+   */
   datosCampoUbicacion(ubi: any) {
     this.frmEvento.controls['ubi'].setValue(ubi);
   }
 
+  /**
+   * Guarda en un array las etiquetas obtenidas de la llamada al servicio
+   */
   getTags() {
     this.etiquetaService.readTags().subscribe((resp) => {
       if (resp) {
@@ -220,6 +258,10 @@ export class CrearEventoComponent implements OnInit {
     });
   }
 
+  /**
+   * Muestra una alerta con el mensaje recibido por parámetro
+   * @param message
+   */
   openSnackBar(message: any) {
     this._snackBar
       .open(message, 'UNDO', {
@@ -233,12 +275,12 @@ export class CrearEventoComponent implements OnInit {
       });
   }
 
-  openDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    element: any,
-    object: any
-  ): void {
+  /**
+   * Llama a un componente que muestar una alerta
+   * @param element
+   * @param object
+   */
+  openDialog(element: any, object: any): void {
     this.dialog.open(DeleteComponent, {
       width: '250px',
       data: {

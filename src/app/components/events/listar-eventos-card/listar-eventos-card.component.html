@@ -1,27 +1,26 @@
 <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
     <div class="card m-2" style="width: 18rem;" *ngFor="let ele of aEventos;">
         <div class="card-body shadow bg-light">
-            <h5 class="card-title">{{ele.nombre}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Inicio: {{ele.fechaInicio}}</h6>
-            <p class="card-text">{{ele.descripcion}}</p>
-            <!-- acciones -->
-            <!-- <div *ngIf="!inLikeUrl">
-                <a routerLink="/saveEvent/{{ele.id}}"><button type="button"
-                        class="card-link btn btn-primary">Editar</button></a>
-                <button type="button" (click)="eliminarEvento(ele.id)"
-                    class="card-link btn btn-danger m-2">Borrar</button>
-            </div> -->
-            <div class="d-flex bd-highlight mb-3">
+            <h3 class="card-title fw-bold border rounded p-2 bg-ligth">{{ele.nombre}}</h3>
+            <h5 class="card-subtitle mb-2 text-muted">Inicio: {{ele.fechaInicio}}</h5>
+            <p class="card-text">{{limitar_cadena(ele.descripcion, 100, '...')}}</p>
+            <mat-divider></mat-divider>
+            <div class="d-flex bd-highlight mt-3">
                 <div class="bd-highlight" *ngIf="!inLikeUrl">
-                    <a routerLink="/saveEvent/{{ele.id}}"><button type="button"
-                            class="card-link btn btn-primary">{{"BOTONES.EDITAR" | translate}}</button></a>
+                    <a routerLink="/saveEvent/{{ele.id}}" class="m-0 p-0">
+                        <button mat-mini-fab color="primary" matTooltip="{{'BOTONES.EDITAR' | translate}}">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </a>
                 </div>
                 <div class="bd-highlight ms-2" *ngIf="!inLikeUrl">
-                    <button type="button" (click)="eliminarEvento(ele.id)"
-                        class="card-link btn btn-danger">{{"BOTONES.BORRAR" | translate}}</button>
+                    <button mat-mini-fab color="warn" (click)="eliminarEvento(ele.id)"
+                        matTooltip="{{'BOTONES.BORRAR' | translate}}">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </div>
-                <div class="ms-auto p-2 bd-highlight" *ngIf="inLikeUrl">
-                    <button mat-icon-button color="warn" (click)="deleteLike(ele.id)"
+                <div class="bd-highlight ms-2" *ngIf="inLikeUrl">
+                    <button mat-mini-fab color="warn" (click)="deleteLike(ele.id)"
                         matTooltip="{{'BOTONES.NO_LIKE' | translate}}">
                         <mat-icon>favorite</mat-icon>
                     </button>
@@ -35,4 +34,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<div *ngIf="aEventos.length==0" class="alert alert-dark text-center mt-3">
+    <h5 class="alert-heading">{{"LISTA_EVENTOS.NO_EVENTOS" | translate}}</h5>
+    <i class="fa-solid fa-circle-exclamation"></i>
 </div>
