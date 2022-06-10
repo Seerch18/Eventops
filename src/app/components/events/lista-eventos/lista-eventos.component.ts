@@ -12,6 +12,7 @@ import { AdminService } from '../../../services/admin/admin.service';
 import { DeleteComponent } from '../../dialog/delete/delete.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteEventoComponent } from '../../dialog/delete-evento/delete-evento.component';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -36,7 +37,6 @@ export class ListaEventosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.aEventos);
     this.getLSUser();
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
@@ -85,22 +85,11 @@ export class ListaEventosComponent implements OnInit {
    * @param eventoId
    */
   eliminarEvento(eventoId: number) {
+    let isAdmin = false;
     if (this.user.rol == 'ADMIN') {
-      this.openDeleteDialog('admin_evento', { id: eventoId });
-      // this.adminService.deleteEvent(eventoId).subscribe((resp) => {
-      //   if (!resp['delete']) {
-      //     alert('Error al eliminar el registro');
-      //   }
-      //   this.cargarEventos();
-      // });
-    } else {
-      // this.eventoService.deleteEvent(eventoId).subscribe((resp) => {
-      //   if (!resp['delete']) {
-      //     alert('Error al eliminar el registro');
-      //   }
-      //   this.cargarEventos();
-      // });
+      isAdmin = true;
     }
+    this.openDeleteDialog(isAdmin, { id: eventoId });
   }
 
   /**
@@ -152,17 +141,22 @@ export class ListaEventosComponent implements OnInit {
 
   /**
    * Llama a un componente que muestra un aviso
-   * @param element
-   * @param object
+   * @param isAdmin
+   * @param id
    */
-  openDeleteDialog(element: any, object: any): void {
-    this.dialog.open(DeleteComponent, {
-      width: '250px',
-      data: {
-        element: element,
-        object: object,
-      },
-    });
+  openDeleteDialog(isAdmin: boolean, id: any): void {
+    this.dialog
+      .open(DeleteEventoComponent, {
+        width: '250px',
+        data: {
+          isAdmin: isAdmin,
+          eventoId: id,
+        },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.cargarEventos();
+      });
   }
 
   /**

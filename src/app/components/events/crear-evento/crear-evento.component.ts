@@ -13,6 +13,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteComponent } from '../../dialog/delete/delete.component';
+import { DeleteEventoComponent } from '../../dialog/delete-evento/delete-evento.component';
 
 @Component({
   selector: 'app-crear-evento',
@@ -54,7 +55,7 @@ export class CrearEventoComponent implements OnInit {
         Validators.required,
         Validators.maxLength(50),
       ]),
-      description: new FormControl(''),
+      description: new FormControl('', Validators.required),
       dateStart: new FormControl('', Validators.required),
       timeStart: new FormControl('', Validators.required),
       tags: new FormControl('', Validators.required),
@@ -204,11 +205,15 @@ export class CrearEventoComponent implements OnInit {
    * Elimina un evento y borra los datos de los campos del formulario
    */
   cancelarBorrarEvento() {
+    let isAdmin = false;
+    if (this.user.rol == 'ADMIN') {
+      isAdmin = true;
+    }
     let boton = document.getElementById('botonCancelarBorrar');
     if (boton) {
       if (boton.innerHTML == 'Borrar Evento') {
         // eliminar evento de la bbdd
-        this.openDialog('evento', this.evento);
+        this.openDeleteDialog(isAdmin, { id: this.evento.id });
       } else {
         // vaciar todos los campos
         this.datosCamposFormulario('', '', '', '', '');
@@ -277,16 +282,21 @@ export class CrearEventoComponent implements OnInit {
 
   /**
    * Llama a un componente que muestar una alerta
-   * @param element
-   * @param object
+   * @param isAdmin
+   * @param id
    */
-  openDialog(element: any, object: any): void {
-    this.dialog.open(DeleteComponent, {
-      width: '250px',
-      data: {
-        element: element,
-        object: object,
-      },
-    });
+  openDeleteDialog(isAdmin: boolean, id: any): void {
+    this.dialog
+      .open(DeleteEventoComponent, {
+        width: '250px',
+        data: {
+          isAdmin: isAdmin,
+          eventoId: id,
+        },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this._router.navigateByUrl('/listEvents');
+      });
   }
 }

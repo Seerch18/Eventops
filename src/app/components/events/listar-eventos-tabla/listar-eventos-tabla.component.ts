@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
 import { AdminService } from '../../../services/admin/admin.service';
 import { DeleteComponent } from '../../dialog/delete/delete.component';
+import { DeleteEventoComponent } from '../../dialog/delete-evento/delete-evento.component';
 
 @Component({
   selector: 'app-listar-eventos-tabla',
@@ -40,7 +41,6 @@ export class ListarEventosTablaComponent implements OnInit {
     this.getLSUser();
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
-        console.log('pasa');
         this.isAdmin = true;
       }
     }
@@ -49,7 +49,6 @@ export class ListarEventosTablaComponent implements OnInit {
   getLSUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
-      // console.log(this.user);
     }
   }
 
@@ -77,17 +76,24 @@ export class ListarEventosTablaComponent implements OnInit {
   }
 
   eliminarEvento(eventoId: number) {
+    let isAdmin = false;
     if (this.user.rol == 'ADMIN') {
-      this.openDeleteDialog('', '', 'admin_evento', { id: eventoId });
-    } else {
-      this.openDeleteDialog('', '', 'evento', { id: eventoId });
+      isAdmin = true;
     }
+    this.openDeleteDialog(isAdmin, { id: eventoId });
   }
 
-  cargarEventos() {
-    this.eventoService
-      .listEvents()
-      .subscribe((eventos) => (this.aEventos = eventos));
+  /**
+   * Carga un array los eventos obtenidos de la llamada al servicio
+   */
+  listAllEvents() {
+    if (this.isAdmin) {
+      this.adminService.listAllEvents().subscribe((resp) => {
+        if (resp) {
+          this.aEventos = resp;
+        }
+      });
+    }
   }
 
   likeOrDeleteLike(eventoId: number) {
@@ -103,23 +109,18 @@ export class ListarEventosTablaComponent implements OnInit {
     });
   }
 
-  openDeleteDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    element: any,
-    object: any
-  ): void {
+  openDeleteDialog(isAdmin: boolean, id: any): void {
     this.dialog
-      .open(DeleteComponent, {
+      .open(DeleteEventoComponent, {
         width: '250px',
         data: {
-          element: element,
-          object: object,
+          isAdmin: isAdmin,
+          eventoId: id,
         },
       })
       .afterClosed()
       .subscribe(() => {
-        this.cargarEventos();
+        this.listAllEvents();
       });
   }
 

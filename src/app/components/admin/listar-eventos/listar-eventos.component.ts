@@ -30,7 +30,6 @@ export class ListarEventosComponent implements OnInit {
   listAllEvents() {
     this.adminService.listAllEvents().subscribe((resp) => {
       if (resp) {
-        console.log(this.eventos);
         this.eventos = resp;
       }
     });

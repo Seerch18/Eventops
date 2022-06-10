@@ -7,6 +7,7 @@ import { ModalEventoComponent } from '../../events/modal-evento/modal-evento.com
 import { AdminService } from '../../../services/admin/admin.service';
 import { Router } from '@angular/router';
 import { DeleteComponent } from '../../dialog/delete/delete.component';
+import { DeleteUserComponent } from '../../dialog/delete-user/delete-user.component';
 @Component({
   selector: 'app-listar-usuarios',
   templateUrl: './listar-usuarios.component.html',
@@ -34,7 +35,6 @@ export class ListarUsuariosComponent implements OnInit {
     this.getLSUser();
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
-        console.log('pasa');
         this.isAdmin = true;
       } else {
         this._router.navigateByUrl('/');
@@ -49,7 +49,6 @@ export class ListarUsuariosComponent implements OnInit {
   getLSUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user')!);
-      console.log(this.user);
     }
   }
 
@@ -67,13 +66,7 @@ export class ListarUsuariosComponent implements OnInit {
    */
   eliminarUsuario(usuarioId: number) {
     if (this.user.rol == 'ADMIN') {
-      this.openDeleteDialog('admin_usuario', { id: usuarioId });
-      // this.adminService.deleteUser(usuarioId).subscribe((resp) => {
-      //   if (!resp['delete']) {
-      //     alert('Error al eliminar el registro');
-      //   }
-      //   this.cargarUsuarios();
-      // });
+      this.openDeleteDialog(true, { id: usuarioId });
     }
   }
 
@@ -86,23 +79,22 @@ export class ListarUsuariosComponent implements OnInit {
         this._router.navigateByUrl('/');
       } else {
         this.aUsuarios = usuarios;
-        console.log(this.aUsuarios);
       }
     });
   }
 
   /**
    * Llama a un componente y muestra un aviso
-   * @param element
-   * @param object
+   * @param isAdmin
+   * @param id
    */
-  openDeleteDialog(element: any, object: any): void {
+  openDeleteDialog(isAdmin: boolean, id: any): void {
     this.dialog
-      .open(DeleteComponent, {
+      .open(DeleteUserComponent, {
         width: '250px',
         data: {
-          element: element,
-          object: object,
+          isAdmin: isAdmin,
+          usuarioId: id,
         },
       })
       .afterClosed()

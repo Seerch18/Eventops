@@ -72,7 +72,6 @@ export class EventoService {
   }
 
   getLikeEvents(eventoId: number = 0): Observable<any> {
-    console.log(eventoId + ' ' + this.userId);
     return this.http.get(
       `${this.urlLikes}/readLike.php?usuarioId=${this.userId}&eventoId=${eventoId}`
     );

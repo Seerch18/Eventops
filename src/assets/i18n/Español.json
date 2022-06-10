@@ -48,8 +48,10 @@
     "PROX": "Próximos Eventos"
   },
   "DIALOG": {
-    "TITLE": "Eliminar Registro",
-    "CONTENT": "¿Estás seguro de eliminar el registro?",
+    "TITLE_EVENTO": "Eliminar Evento",
+    "CONTENT_EVENTO": "¿Estás seguro de eliminar el evento?",
+    "TITLE_USER": "Eliminar Usuario",
+    "CONTENT_USER": "¿Estás seguro de eliminar el usuario?",
     "NO": "No",
     "SI": "Si",
     "PROYECTO": "Proyecto",
@@ -100,6 +102,9 @@
     "INICIO": "Inicio",
     "FIN": "Fin",
     "HORA": "Hora Inicio / Fin",
-    "BUSCAR": "Buscar"
+    "BUSCAR": "Buscar",
+    "TIP_FECHA": "EVENTOS QUE EXISTAN ENTRE LA FECHA INICIO Y LA FECHA FIN",
+    "TIP_HORA": "EVENTOS QUE EXISTAN ENTRE LA HORA INICIO Y LA HORA FIN",
+    "SELECT": "Selecciona una opción"
   }
 }

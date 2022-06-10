@@ -23,7 +23,7 @@
             <div class="card mb-4">
                 <div class="card-header">{{"PERFIL.HEADER" | translate}}</div>
                 <div class="card-body">
-                    <form [formGroup]="frmUsuario" (submit)="editarUsuario()">
+                    <form [formGroup]="frmUsuario" (submit)="editar()">
                         <div class="mb-3">
 
                         </div>
@@ -50,7 +50,8 @@
                         </div>
                         <!-- <button type="submit" id="editar" [disabled]="frmUsuario.invalid"
                             class="btn btn-primary mb-4">{{"BOTONES.GUARDAR" | translate}}</button> -->
-                        <button mat-raised-button color="primary" type="submit" disabled class="mb-2">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="frmUsuario.invalid"
+                            class="mb-2" *ngIf="canEdit">
                             {{"BOTONES.GUARDAR" | translate}}
                         </button>
                     </form>

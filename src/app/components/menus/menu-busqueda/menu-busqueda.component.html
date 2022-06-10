@@ -12,7 +12,7 @@
                     {{"FILTROS.CIUDAD" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-select placeholder="Select an option" formControlName="ciudad">
+            <mat-select placeholder="{{'FILTROS.SELECT' | translate}}" formControlName="ciudad">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let ele of cities" [value]="ele.id">
                     {{ele.nombre}}
@@ -36,7 +36,7 @@
 
         <mat-expansion-panel>
             <mat-expansion-panel-header>
-                <mat-panel-title class="primary">
+                <mat-panel-title class="primary" matTooltip="{{'FILTROS.TIP_FECHA' | translate}}">
                     {{"FILTROS.FECHA" | translate}}
                 </mat-panel-title>
             </mat-expansion-panel-header>
@@ -47,7 +47,7 @@
         </mat-expansion-panel>
 
         <mat-expansion-panel>
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header matTooltip="{{'FILTROS.TIP_HORA' | translate}}">
                 <mat-panel-title class="primary">
                     {{"FILTROS.HORA" | translate}}
                 </mat-panel-title>

@@ -48,8 +48,10 @@
     "PROX": "Upcoming events"
   },
   "DIALOG": {
-    "TITLE": "Delete Record",
-    "CONTENT": "Are you sure you want to delete the record?",
+    "TITLE_EVENTO": "Delete Event",
+    "CONTENT_EVENTO": "Are you sure you want to delete the event?",
+    "TITLE_USER": "Delete User",
+    "CONTENT_USER": "Are you sure you want to delete the user?",
     "NO": "No",
     "SI": "Yes",
     "PROYECTO": "Project",
@@ -100,6 +102,9 @@
     "INICIO": "Start",
     "FIN": "End",
     "HORA": "Start / End Time",
-    "BUSCAR": "Search"
+    "BUSCAR": "Search",
+    "TIP_FECHA": "EVENTS THAT EXIST BETWEEN THE START DATE AND THE END DATE",
+    "TIP_HORA": "EVENTS THAT EXIST BETWEEN THE START TIME AND THE END TIME",
+    "SELECT": "Select an option"
   }
 }

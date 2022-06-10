@@ -52,6 +52,8 @@ import { Page403Component } from './components/errors/page403/page403.component'
 import { ListaEventosComponent } from './components/events/lista-eventos/lista-eventos.component';
 import { DeleteComponent } from './components/dialog/delete/delete.component';
 import { AboutComponent } from './components/dialog/about/about.component';
+import { DeleteUserComponent } from './components/dialog/delete-user/delete-user.component';
+import { DeleteEventoComponent } from './components/dialog/delete-evento/delete-evento.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
@@ -83,6 +85,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ListaEventosComponent,
     DeleteComponent,
     AboutComponent,
+    DeleteUserComponent,
+    DeleteEventoComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,8 +3,7 @@ import { EventoService } from '../../../services/events/evento.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
-import { MatButtonModule } from '@angular/material/button';
-import { DeleteComponent } from '../../dialog/delete/delete.component';
+import { DeleteEventoComponent } from '../../dialog/delete-evento/delete-evento.component';
 
 @Component({
   selector: 'app-listar-eventos-card',
@@ -29,13 +28,8 @@ export class ListarEventosCardComponent implements OnInit {
   }
 
   eliminarEvento(id: any) {
-    this.openDeleteDialog('0ms', '0ms', 'evento', { id: id });
-    // this.eventoService.deleteEvent(id).subscribe((resp) => {
-    //   if (!resp['delete']) {
-    //     alert('Error al eliminar el registro');
-    //   }
-    //   this.cargarEventos();
-    // });
+    let isAdmin = false;
+    this.openDeleteDialog(isAdmin, { id: id });
   }
 
   cargarEventos() {
@@ -57,27 +51,20 @@ export class ListarEventosCardComponent implements OnInit {
   }
 
   deleteLike(eventoId: number) {
-    console.log(eventoId);
     this.eventoService.deleteLike(eventoId).subscribe((resp) => {
-      console.log(resp);
       this.eventoService.getLikeEvents().subscribe((resp) => {
         this.aEventos = resp;
       });
     });
   }
 
-  openDeleteDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string,
-    element: any,
-    object: any
-  ): void {
+  openDeleteDialog(isAdmin: boolean, id: any): void {
     this.dialog
-      .open(DeleteComponent, {
+      .open(DeleteEventoComponent, {
         width: '250px',
         data: {
-          element: element,
-          object: object,
+          isAdmin: isAdmin,
+          eventoId: id,
         },
       })
       .afterClosed()
