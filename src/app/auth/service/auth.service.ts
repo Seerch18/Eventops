@@ -1,28 +1,31 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { BehaviorSubject, Observable } from 'rxjs'
+import { Router } from '@angular/router'
+import { environment } from '../../../environments/environment'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  public currentUser: BehaviorSubject<any>;
-  public nameUserLS: string = 'user';
+  public currentUser: BehaviorSubject<any>
+  public nameUserLS: string = 'user'
 
-  url = 'http://localhost/apirestangular/api/auth';
+  API_URL = environment.API_URL
+
+  url = this.API_URL + '/apirestangular/api/auth'
 
   constructor(private httpClient: HttpClient, private _router: Router) {
     this.currentUser = new BehaviorSubject(
       JSON.parse(localStorage.getItem(this.nameUserLS)!)
-    );
+    )
   }
 
   /**
    * Devuelve el usuario actual
    */
   get getUser(): any {
-    return this.currentUser.value;
+    return this.currentUser.value
   }
 
   /**
@@ -34,7 +37,7 @@ export class AuthService {
     return this.httpClient.post(
       `${this.url}/register.php`,
       JSON.stringify(datos)
-    );
+    )
   }
 
   /**
@@ -43,17 +46,17 @@ export class AuthService {
    * @returns
    */
   login(datos: any): Observable<any> {
-    return this.httpClient.post(`${this.url}/login.php`, JSON.stringify(datos));
+    return this.httpClient.post(`${this.url}/login.php`, JSON.stringify(datos))
   }
 
   /**
    * Elimina la sesión del usuario
    */
   logout() {
-    localStorage.removeItem(this.nameUserLS);
-    this.currentUser.next(null!);
-    this._router.navigateByUrl('/');
-    window.location.reload();
+    localStorage.removeItem(this.nameUserLS)
+    this.currentUser.next(null!)
+    this._router.navigateByUrl('/')
+    window.location.reload()
   }
 
   /**
@@ -61,7 +64,7 @@ export class AuthService {
    * @param user
    */
   setUserToLocalStorage(user: any) {
-    localStorage.setItem(this.nameUserLS, JSON.stringify(user));
-    this.currentUser.next(user);
+    localStorage.setItem(this.nameUserLS, JSON.stringify(user))
+    this.currentUser.next(user)
   }
 }
