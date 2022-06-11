@@ -11,5 +11,6 @@
   },
   "rules": {
     // Aquí se pueden especificar reglas propias para ESLint, así como para sobrescribir las reglas que ya existen.
-  }
+  },
+  "plugins": ["@typescript-eslint/parser"]
 }
