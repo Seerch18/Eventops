@@ -6,23 +6,29 @@
             <p class="card-text">{{limitar_cadena(ele.descripcion, 100, '...')}}</p>
             <mat-divider></mat-divider>
             <div class="d-flex bd-highlight mt-3">
-                <div class="bd-highlight" *ngIf="!inLikeUrl">
+                <div class="bd-highlight" *ngIf="!inActionsUrl">
                     <a routerLink="/saveEvent/{{ele.id}}" class="m-0 p-0">
                         <button mat-mini-fab color="primary" matTooltip="{{'BOTONES.EDITAR' | translate}}">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </a>
                 </div>
-                <div class="bd-highlight ms-2" *ngIf="!inLikeUrl">
+                <div class="bd-highlight ms-2" *ngIf="!inActionsUrl">
                     <button mat-mini-fab color="warn" (click)="eliminarEvento(ele.id)"
                         matTooltip="{{'BOTONES.BORRAR' | translate}}">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
-                <div class="bd-highlight ms-2" *ngIf="inLikeUrl">
+                <div class="bd-highlight ms-2" *ngIf="inActionsUrl && _route.url != '/activity'">
                     <button mat-mini-fab color="warn" (click)="deleteLike(ele.id)"
                         matTooltip="{{'BOTONES.NO_LIKE' | translate}}">
                         <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+                <div class="bd-highlight ms-2" *ngIf="inActionsUrl && _route.url != '/likes'">
+                    <button mat-mini-fab color="primary" matTooltip="{{'BOTONES.NO_PARTICIPAR_EVENTO' | translate}}"
+                        (click)="quitarParticipacion(ele.id)">
+                        <i class="fa-solid fa-person-walking"></i>
                     </button>
                 </div>
                 <div class="ms-auto p-2 bd-highlight">

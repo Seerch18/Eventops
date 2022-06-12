@@ -40,6 +40,8 @@
     "LIKE": "Me gusta",
     "PARTICIPAR": "Participar",
     "PARTICIPAR_EVENTO": "Participar en el evento",
+    "NO_PARTICIPAR": "Dejar de participar",
+    "NO_PARTICIPAR_EVENTO": "Dejar de participar en el evento",
     "ACCIONES": "Acciones",
     "CERRAR": "Cerrar"
   },
@@ -92,7 +94,8 @@
     "INFO": "Acerca de ...",
     "INFO_FULL": "Acerca de la página",
     "WELCOME": "Bienvenid@",
-    "TEXTO_NO_USER": "¡Registrate para descubrir todas las funcionalidades!"
+    "TEXTO_NO_USER": "Crea tu evento o participa en los que hay en tu ciudad. ¡Registrate para descubrir todas las funcionalidades!",
+    "PARTICIPANDO": "Mi Actividad"
   },
   "FILTROS": {
     "TITLE": "Filtros Búsqueda",

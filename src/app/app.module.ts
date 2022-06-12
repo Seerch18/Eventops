@@ -54,6 +54,7 @@ import { DeleteComponent } from './components/dialog/delete/delete.component';
 import { AboutComponent } from './components/dialog/about/about.component';
 import { DeleteUserComponent } from './components/dialog/delete-user/delete-user.component';
 import { DeleteEventoComponent } from './components/dialog/delete-evento/delete-evento.component';
+import { ParticipandoEventosComponent } from './components/events/participando-eventos/participando-eventos.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, 'assets/i18n/', '.json');
@@ -87,6 +88,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AboutComponent,
     DeleteUserComponent,
     DeleteEventoComponent,
+    ParticipandoEventosComponent,
   ],
   imports: [
     BrowserModule,

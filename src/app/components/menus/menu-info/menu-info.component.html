@@ -3,7 +3,7 @@
         {{"MENU.WELCOME" | translate}} {{name}}
     </button>
     <button mat-button color="primary" class="ms-4" *ngIf="!isAuth">
-        {{"MENU.TEXTO_NO_USER" | translate}}
+        <i>{{"MENU.TEXTO_NO_USER" | translate}}</i>
     </button>
 
     <button mat-raised-button class="ms-3" color="primary" (click)="openDialog()">

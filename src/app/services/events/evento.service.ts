@@ -84,28 +84,31 @@ export class EventoService {
     return this.http.get(`${this.url}/readEvent.php?eventoId=${eventoId}`)
   }
 
-  participarEvento(eventoId: number): Observable<any> {
-    return this.http.get(
-      `${this.urlEventSub}/createEventSub.php?eventoId=${eventoId}`
-    )
-  }
-
-  eliminarParticipacionEvento(eventoId: number): Observable<any> {
-    return this.http.delete(
-      `${this.urlEventSub}/deleteEventSub.php?eventoId=${eventoId}`
-    )
-  }
-
   readParticipacionesEvento(
     eventoId: number,
     idUsu: boolean = false
   ): Observable<any> {
+    console.log(eventoId)
     let usuId: any = 0
     if (idUsu) {
       usuId = this.userId
     }
+    console.log(usuId)
     return this.http.get(
       `${this.urlEventSub}/readEventSub.php?eventoId=${eventoId}&usuarioId=${usuId}`
+    )
+  }
+
+  crearParticipacion(eventoId: number): Observable<any> {
+    return this.http.get(
+      `${this.urlEventSub}/createEventSub.php?usuarioId=${this.userId}&eventoId=${eventoId}`,
+      {}
+    )
+  }
+
+  eliminarParticipacion(eventoId: number): Observable<any> {
+    return this.http.delete(
+      `${this.urlEventSub}/deleteEventSub.php?usuarioId=${this.userId}&eventoId=${eventoId}`
     )
   }
 }

@@ -36,7 +36,7 @@ export class GooglemapsComponent implements OnInit, OnChanges {
 
   // información del InfoWindow
   label = {
-    titulo: 'Ubicación',
+    titulo: 'choose location',
     subtitulo: '',
   };
 
@@ -127,6 +127,10 @@ export class GooglemapsComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * Añada un marcador al mapa
+   * @param position 
+   */
   addMarker(position: any): void {
     let latLng = new google.maps.LatLng(position.lat, position.lng);
     this.marker.setPosition(latLng);
@@ -149,7 +153,7 @@ export class GooglemapsComponent implements OnInit, OnChanges {
 
     if (!this._router.url.includes('/saveEvent')) {
       let botonCrear = this.document.createElement('button');
-      botonCrear.textContent = 'Crear Evento';
+      botonCrear.textContent = 'Create Event';
       botonCrear.classList.add('btn-sm');
       botonCrear.classList.add('btn-primary');
       botonCrear.classList.add('m-2');
@@ -276,7 +280,7 @@ export class GooglemapsComponent implements OnInit, OnChanges {
     contenedor.appendChild(title);
     contenedor.appendChild(content);
     let boton = this.document.createElement('button');
-    boton.textContent = 'Ver Evento';
+    boton.textContent = 'Show Event';
     boton.classList.add('btn-sm');
     boton.classList.add('btn-primary');
     boton.classList.add('m-2');

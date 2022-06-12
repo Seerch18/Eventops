@@ -23,15 +23,24 @@
     </a>
   </li>
 
+  <li class="nav-item">
+    <a routerLink="/activity" routerLinkActive="activo" mat-button color="primary" class="w-100 p-0 border-bottom">
+      <span class="bi me-2 text-dark" width="16" height="16"><i class="fa-solid fa-person-walking"></i></span>
+      {{"MENU.PARTICIPANDO" | translate}}
+    </a>
+  </li>
+
   <li class="nav-item" *ngIf="isAdmin">
-    <a routerLink="admin/listEvents" routerLinkActive="activo" mat-button color="primary" class="w-100 p-0 border-bottom">
+    <a routerLink="admin/listEvents" routerLinkActive="activo" mat-button color="primary"
+      class="w-100 p-0 border-bottom">
       <span class="bi me-2 text-dark" width="16" height="16"><i class="fa-solid fa-list"></i></span>
       {{"MENU.LISTA_EVENTOS" | translate}}
     </a>
   </li>
 
   <li class="nav-item" *ngIf="isAdmin">
-    <a routerLink="admin/listUsers" routerLinkActive="activo" mat-button color="primary" class="w-100 p-0 border-bottom">
+    <a routerLink="admin/listUsers" routerLinkActive="activo" mat-button color="primary"
+      class="w-100 p-0 border-bottom">
       <span class="bi me-2 text-dark" width="16" height="16"><i class="fa-solid fa-list"></i></span>
       {{"MENU.LISTA_USU" | translate}}
     </a>

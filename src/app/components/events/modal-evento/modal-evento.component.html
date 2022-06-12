@@ -42,15 +42,25 @@
             </mat-card>
 
         </div>
-        <div class="col-3">
+        <div class="col-3 p-0 m-0">
             <div class="d-flex flex-wrap">
-                <button mat-raised-button color="warn" (click)="likeOrDeleteLike(data.id)" class="mb-2">
-                    <mat-icon>favorite</mat-icon> {{"BOTONES.LIKE" | translate}}
-                </button>
-                <button mat-raised-button color="primary" matTooltip="{{'BOTONES.PARTICIPAR_EVENTO' | translate}}"
-                    class="mb-2" (click)="participarEvento(data.id)">
-                    <i class="fa-solid fa-hand"></i> {{"BOTONES.PARTICIPAR" | translate}}
-                </button>
+                <div class="p-0 m-0 w-100" *ngIf="outLikeUrl">
+                    <button mat-raised-button color="warn" (click)="likeOrDeleteLike(data.id)" class="mb-2 w-100"
+                        matTooltip="{{me_gusta? ('BOTONES.NO_LIKE'|
+                    translate) : ('BOTONES.LIKE' | translate)}}">
+                        <mat-icon>favorite</mat-icon> {{me_gusta? ("BOTONES.NO_LIKE"|
+                        translate) : ("BOTONES.LIKE" | translate)}}
+                    </button>
+                </div>
+
+                <div class="p-0 m-0 w-100" *ngIf="outActivityUrl">
+                    <button mat-raised-button color="primary" matTooltip="{{participa? ('BOTONES.NO_PARTICIPAR_EVENTO'|
+                    translate) : ('BOTONES.PARTICIPAR_EVENTO' | translate)}}" class="mb-2 w-100"
+                        (click)="participarEvento(data.id)">
+                        <i class="fa-solid fa-hand me-2"></i>{{participa? ("BOTONES.NO_PARTICIPAR"|
+                        translate) : ("BOTONES.PARTICIPAR" | translate)}}
+                    </button>
+                </div>
             </div>
         </div>
     </div>

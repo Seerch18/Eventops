@@ -40,6 +40,8 @@
     "LIKE": "Like",
     "PARTICIPAR": "Participate",
     "PARTICIPAR_EVENTO": "Participate in the event",
+    "NO_PARTICIPAR": "Delete Participation",
+    "NO_PARTICIPAR_EVENTO": "Remove Event Participation",
     "ACCIONES": "Actions",
     "CERRAR": "Close"
   },
@@ -92,7 +94,8 @@
     "INFO": "About ...",
     "INFO_FULL": "About this page",
     "WELCOME": "Welcome",
-    "TEXTO_NO_USER": "Sign up to discover all the features!"
+    "TEXTO_NO_USER": "Create or participate in events in your city. Sign up to discover all the features!",
+    "PARTICIPANDO": "My Activity"
   },
   "FILTROS": {
     "TITLE": "Filters Search",
