@@ -56,7 +56,7 @@ import { DeleteUserComponent } from './components/dialog/delete-user/delete-user
 import { DeleteEventoComponent } from './components/dialog/delete-evento/delete-evento.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, '../assets/i18n/', '.json');
+  return new TranslateHttpLoader(httpClient, 'assets/i18n/', '.json');
 }
 
 @NgModule({

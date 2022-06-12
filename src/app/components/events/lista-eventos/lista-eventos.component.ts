@@ -3,28 +3,30 @@ import {
   OnInit,
   Input,
   OnChanges,
-  SimpleChanges,
-} from '@angular/core';
-import { EventoService } from '../../../services/events/evento.service';
-import { ModalEventoComponent } from '../modal-evento/modal-evento.component';
-import { MatDialog } from '@angular/material/dialog';
-import { AdminService } from '../../../services/admin/admin.service';
-import { DeleteComponent } from '../../dialog/delete/delete.component';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteEventoComponent } from '../../dialog/delete-evento/delete-evento.component';
+  SimpleChanges
+} from '@angular/core'
+import { EventoService } from '../../../services/events/evento.service'
+import { ModalEventoComponent } from '../modal-evento/modal-evento.component'
+import { MatDialog } from '@angular/material/dialog'
+import { AdminService } from '../../../services/admin/admin.service'
+import { DeleteComponent } from '../../dialog/delete/delete.component'
+import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { DeleteEventoComponent } from '../../dialog/delete-evento/delete-evento.component'
+import { environment } from '../../../../environments/environment.prod'
 
 @Component({
   selector: 'app-lista-eventos',
   templateUrl: './lista-eventos.component.html',
-  styleUrls: ['./lista-eventos.component.css'],
+  styleUrls: ['./lista-eventos.component.css']
 })
 export class ListaEventosComponent implements OnInit {
-  @Input() aEventos: any;
-  @Input() eventos: any;
-  private user: any;
-  public isAdmin: boolean;
-  durationInSeconds = 3;
+  @Input() aEventos: any
+  @Input() eventos: any
+  private user: any
+  public isAdmin: boolean
+  durationInSeconds = 3
+  public HREF_BASE = environment.HREF_BASE
 
   constructor(
     private eventoService: EventoService,
@@ -33,14 +35,14 @@ export class ListaEventosComponent implements OnInit {
     private _router: Router,
     private _snackBar: MatSnackBar
   ) {
-    this.isAdmin = false;
+    this.isAdmin = false
   }
 
   ngOnInit(): void {
-    this.getLSUser();
+    this.getLSUser()
     if (this.user) {
       if (this.user.rol == 'ADMIN') {
-        this.isAdmin = true;
+        this.isAdmin = true
       }
     }
   }
@@ -50,7 +52,7 @@ export class ListaEventosComponent implements OnInit {
    */
   getLSUser() {
     if (localStorage.getItem('user')) {
-      this.user = JSON.parse(localStorage.getItem('user')!);
+      this.user = JSON.parse(localStorage.getItem('user')!)
     }
   }
 
@@ -60,8 +62,8 @@ export class ListaEventosComponent implements OnInit {
    */
   like(eventoId: number) {
     this.eventoService.createLike(eventoId).subscribe((resp) => {
-      this.openSnackBar('Añadido a... Me Gustan');
-    });
+      this.openSnackBar('Añadido a... Me Gustan')
+    })
   }
 
   /**
@@ -74,10 +76,10 @@ export class ListaEventosComponent implements OnInit {
         this.dialog.open(ModalEventoComponent, {
           height: '600px',
           width: '800px',
-          data: resp,
-        });
+          data: resp
+        })
       }
-    });
+    })
   }
 
   /**
@@ -85,11 +87,11 @@ export class ListaEventosComponent implements OnInit {
    * @param eventoId
    */
   eliminarEvento(eventoId: number) {
-    let isAdmin = false;
+    let isAdmin = false
     if (this.user.rol == 'ADMIN') {
-      isAdmin = true;
+      isAdmin = true
     }
-    this.openDeleteDialog(isAdmin, { id: eventoId });
+    this.openDeleteDialog(isAdmin, { id: eventoId })
   }
 
   /**
@@ -98,7 +100,7 @@ export class ListaEventosComponent implements OnInit {
   cargarEventos() {
     this.eventoService
       .listEvents()
-      .subscribe((eventos) => (this.aEventos = eventos));
+      .subscribe((eventos) => (this.aEventos = eventos))
   }
 
   /**
@@ -109,15 +111,15 @@ export class ListaEventosComponent implements OnInit {
     if (this.user) {
       this.eventoService.getLikeEvents(eventoId).subscribe((resp) => {
         if (resp.length == 0) {
-          this.like(eventoId);
+          this.like(eventoId)
         } else {
           this.eventoService.deleteLike(eventoId).subscribe((resp) => {
-            this.openSnackBar('Eliminado de... Me Gustan');
-          });
+            this.openSnackBar('Eliminado de... Me Gustan')
+          })
         }
-      });
+      })
     } else {
-      this._router.navigateByUrl('login');
+      this._router.navigateByUrl('login')
     }
   }
 
@@ -132,11 +134,11 @@ export class ListaEventosComponent implements OnInit {
     // Si la longitud es mayor que el límite...
     if (cadena.length > limite) {
       // Entonces corta la cadena y ponle el sufijo
-      return cadena.slice(0, limite) + sufijo;
+      return cadena.slice(0, limite) + sufijo
     }
 
     // Si no, entonces devuelve la cadena normal
-    return cadena;
+    return cadena
   }
 
   /**
@@ -150,13 +152,13 @@ export class ListaEventosComponent implements OnInit {
         width: '250px',
         data: {
           isAdmin: isAdmin,
-          eventoId: id,
-        },
+          eventoId: id
+        }
       })
       .afterClosed()
       .subscribe(() => {
-        this.cargarEventos();
-      });
+        this.cargarEventos()
+      })
   }
 
   /**
@@ -166,9 +168,9 @@ export class ListaEventosComponent implements OnInit {
   openSnackBar(message: any) {
     this._snackBar
       .open(message, 'UNDO', {
-        duration: this.durationInSeconds * 1000,
+        duration: this.durationInSeconds * 1000
       })
       .afterOpened()
-      .subscribe(() => {});
+      .subscribe(() => {})
   }
 }
