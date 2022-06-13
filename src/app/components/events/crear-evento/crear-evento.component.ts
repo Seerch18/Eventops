@@ -41,7 +41,8 @@ export class CrearEventoComponent implements OnInit {
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {
-    this.currentDate = new Date().toISOString().split('T')[0]
+    this.currentDate = this.getCurrentDate()
+    // this.currentDate = new Date().toISOString().split('T')[0]
     this.evento = {} as Evento
     this.tagsList = []
     this.eventTags = []
@@ -292,5 +293,20 @@ export class CrearEventoComponent implements OnInit {
       .subscribe(() => {
         this._router.navigateByUrl('/listEvents')
       })
+  }
+
+  getCurrentDate() {
+    let today: any = new Date()
+    let dd: any = today.getDate()
+    let mm: any = today.getMonth() + 1 //January is 0 so need to add 1 to make it 1!
+    let yyyy: any = today.getFullYear()
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+    today = yyyy + '-' + mm + '-' + dd
+    return today
   }
 }

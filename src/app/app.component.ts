@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class AppComponent {
   public isAuth: boolean
-  public menu_col: string = 'col-2'
+  public menu_col: string = 'col-lg-2'
   public body_col: string = 'col-12'
 
   constructor(private translateService: TranslateService) {
@@ -21,7 +21,7 @@ export class AppComponent {
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
       this.isAuth = true
-      this.body_col = 'col-10'
+      this.body_col = 'col-lg-10'
     }
   }
 }

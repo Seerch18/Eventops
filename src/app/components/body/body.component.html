@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-9">
+        <div class="col-12 order-2 col-lg-9 order-lg-1">
             <div class="row">
                 <div class="col-12">
                     <app-googlemaps [markers]="markers"></app-googlemaps>
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3 m-0 p-0">
+        <div class="col-12 order-1 col-lg-3 order-lg-2 m-0 p-0 mb-4">
             <app-menu-busqueda (eventos)="mostrarEventosFiltrados($event)"></app-menu-busqueda>
         </div>
     </div>

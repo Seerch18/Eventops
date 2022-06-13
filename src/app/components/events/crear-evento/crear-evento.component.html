@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <form [formGroup]="frmEvento" (submit)="crearEditarEvento()">
                         <!-- Nombre input -->
                         <div class="form-outline mb-4">
@@ -79,7 +79,7 @@
                         </button>
                     </form>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     <app-googlemaps [currentPosition]="currentPosition" (newPositionEvent)="addPosition($event)">
                     </app-googlemaps>
                 </div>

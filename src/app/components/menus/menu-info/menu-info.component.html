@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand navbar-light p-4 d-flex justify-content-between" style="background-color: #B6D7F0;">
-    <button mat-button color="primary" class="ms-1" *ngIf="isAuth">
+    <button mat-button color="primary" class="ms-1 d-none d-md-block" *ngIf="isAuth">
         {{"MENU.WELCOME" | translate}} {{name}}
     </button>
-    <button mat-button color="primary" class="ms-4" *ngIf="!isAuth">
+    <button mat-button color="primary" class="ms-4 d-none d-lg-block" *ngIf="!isAuth">
         <i>{{"MENU.TEXTO_NO_USER" | translate}}</i>
     </button>
 
