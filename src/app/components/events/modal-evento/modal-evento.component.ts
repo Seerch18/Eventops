@@ -19,6 +19,7 @@ export class ModalEventoComponent implements OnInit {
   private user: any
   public outLikeUrl = false
   public outActivityUrl = false
+  public countUsers: any = 0
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -58,6 +59,16 @@ export class ModalEventoComponent implements OnInit {
           this.me_gusta = true
         }
       })
+
+      this.eventoService
+        .readParticipacionesEvento(this.data.id)
+        .subscribe((resp) => {
+          if (resp) {
+            if (resp.length > 0) {
+              this.countUsers = resp.length
+            }
+          }
+        })
     }
   }
 

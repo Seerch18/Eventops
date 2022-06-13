@@ -13,13 +13,23 @@
         <div class="col-9">
 
             <mat-card class="">
-                <mat-card-header class="mb-3">
-                    <div mat-card-avatar class="example-header-image">
-                        <img mat-card-avatar src="{{data.avatar}}" alt="" *ngIf="data.avatar">
+
+                <div class="d-flex justify-content-between flex-wrap">
+                    <mat-card-header class="mb-3 w-75">
+                        <div mat-card-avatar class="example-header-image">
+                            <img mat-card-avatar src="{{data.avatar}}" alt="" *ngIf="data.avatar">
+                        </div>
+                        <mat-card-title>{{data.usu}}</mat-card-title>
+                        <mat-card-subtitle>{{data.email}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <div *ngIf="countUsers > 0" class="mb-2">
+                        <span matTooltip="{{'BOTONES.PARTICIPANTES' | translate}}"><i
+                                class="fa-solid fa-user me-2"></i>{{countUsers}}</span>
                     </div>
-                    <mat-card-title>{{data.usu}}</mat-card-title>
-                    <mat-card-subtitle>{{data.email}}</mat-card-subtitle>
-                </mat-card-header>
+                </div>
+
+
 
                 <mat-card-content>
                     <div class="mb-3">
