@@ -44,19 +44,21 @@ export class ModalEventoComponent implements OnInit {
       this.outActivityUrl = true
     }
 
-    this.eventoService
-      .readParticipacionesEvento(this.data.id, true)
-      .subscribe((resp) => {
+    if (this.user) {
+      this.eventoService
+        .readParticipacionesEvento(this.data.id, true)
+        .subscribe((resp) => {
+          if (resp.length > 0) {
+            this.participa = true
+          }
+        })
+
+      this.eventoService.getLikeEvents(this.data.id).subscribe((resp) => {
         if (resp.length > 0) {
-          this.participa = true
+          this.me_gusta = true
         }
       })
-
-    this.eventoService.getLikeEvents(this.data.id).subscribe((resp) => {
-      if (resp.length > 0) {
-        this.me_gusta = true
-      }
-    })
+    }
   }
 
   /**
