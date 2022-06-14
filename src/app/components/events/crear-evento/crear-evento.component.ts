@@ -91,7 +91,6 @@ export class CrearEventoComponent implements OnInit {
   crearEditarEvento() {
     // editar
     if (this._router.url.includes('saveEvent/' + this.evento.id)) {
-      console.log(this.frmEvento.value)
       if (this.user.rol == 'ADMIN') {
         this.adminService
           .editEvent(this.frmEvento.value, this.evento.id)
@@ -107,7 +106,6 @@ export class CrearEventoComponent implements OnInit {
       }
     } else {
       // crear
-      console.log(this.frmEvento.value)
       this.eventoService
         .saveEvent(this.frmEvento.value)
         .subscribe((resp: any) => {

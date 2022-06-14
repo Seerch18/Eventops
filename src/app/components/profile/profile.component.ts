@@ -80,9 +80,6 @@ export class ProfileComponent implements OnInit {
     this.adminService
       .editUser(this.frmUsuario.value, this.selectedUserId)
       .subscribe((resp) => {
-        // console.log(resp);
-        // let usuario = resp;
-        // this.datosCamposFormulario(usuario.nick, usuario.name, usuario.email);
         this._router.navigateByUrl('admin/listUsers')
       })
   }

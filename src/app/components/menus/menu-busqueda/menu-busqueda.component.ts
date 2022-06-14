@@ -49,11 +49,9 @@ export class MenuBusquedaComponent implements OnInit {
   }
 
   filtrarEventos() {
-    // console.log(this.frmFiltro.value);
     this.filtroService
       .getFilteredEvents(this.frmFiltro.value)
       .subscribe((resp) => {
-        console.log(resp)
         if (resp) {
           this.openSnackBar('Se han encontrado eventos')
         } else {

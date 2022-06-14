@@ -34,7 +34,6 @@ export class ModalEventoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data)
     this.getLSUser()
     this.getTagsEvent(this.data.id)
 
@@ -124,7 +123,6 @@ export class ModalEventoComponent implements OnInit {
   }
 
   participarEvento(eventoId: number) {
-    console.log(this.user)
     if (this.user) {
       if (this.participa) {
         // eliminar la participación

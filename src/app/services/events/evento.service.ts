@@ -88,12 +88,10 @@ export class EventoService {
     eventoId: number,
     idUsu: boolean = false
   ): Observable<any> {
-    console.log(eventoId)
     let usuId: any = 0
     if (idUsu) {
       usuId = this.userId
     }
-    console.log(usuId)
     return this.http.get(
       `${this.urlEventSub}/readEventSub.php?eventoId=${eventoId}&usuarioId=${usuId}`
     )
