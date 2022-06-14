@@ -5,6 +5,7 @@ import { EventoService } from '../../../services/events/evento.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { Router } from '@angular/router'
+import { environment } from '../../../../environments/environment.prod'
 
 @Component({
   selector: 'app-modal-evento',
@@ -36,6 +37,10 @@ export class ModalEventoComponent implements OnInit {
     console.log(this.data)
     this.getLSUser()
     this.getTagsEvent(this.data.id)
+
+    if (!this.data.avatar) {
+      this.data.avatar = environment.HREF_BASE + '/assets/IMG/avatar.jpg'
+    }
 
     if (this._router.url != '/likes') {
       this.outLikeUrl = true
